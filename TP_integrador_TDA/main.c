@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <Libreria_TDA.h>
+#include "Libreria_TDA.h"
 
-void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
+
+ main()
+{
+    printf("Hola Mundoooooooooooooooooooooooo!");
+}
+
+/*void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
 {
     tDato num;
     _Bool primo;
@@ -36,8 +42,5 @@ void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool
             }
         }
     }
-}
- main()
-{
-    printf("Hola Mundoooooooooooooooooooooooo!");
-}
+}*/
+
