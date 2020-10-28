@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1603919765 source:c:\users\gonzalo\documents\materias de facultad\algoritmos y estructuras de datos  i\tp\tp_integrador\tdacae\tp_integrador_tda\main.c
+	<stdio.h>
+	<stdlib.h>
+
