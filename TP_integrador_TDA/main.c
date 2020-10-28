@@ -6,7 +6,6 @@ void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool
 {
     tDato num;
     _Bool primo;
-    primo = true;
     while(!cVacia(&q) && !error)
     {
         cSacar(&q, &num)
