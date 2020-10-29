@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LIB_TDA_COLA_EST_CIR.h"
+#include "Libreria_TDA.h"
 
 
  main()
