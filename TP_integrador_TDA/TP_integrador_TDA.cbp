@@ -31,7 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Libreria_TDA.h" />
+		<Unit filename="LIB_TDA_COLA_EST_CIR.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
