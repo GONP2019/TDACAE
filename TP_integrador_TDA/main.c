@@ -29,7 +29,7 @@
     {
         printf("Cola llena");
 
-        for (int j=1;j<=MAX;j++){
+        for (int j=0;j<=MAX;j++){
             printf("El numero es %i \n",k.arrCC[j]);
         }
     }

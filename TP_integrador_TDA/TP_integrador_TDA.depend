@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1604009718 source:c:\users\gonzalo\documents\materias de facultad\algoritmos y estructuras de datos  i\tp\tp_integrador\tdacae\tp_integrador_tda\main.c
+1604010226 source:c:\users\gonzalo\documents\materias de facultad\algoritmos y estructuras de datos  i\tp\tp_integrador\tdacae\tp_integrador_tda\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LIB_TDA_COLA_EST_CIR.h"
 
 1603922670 c:\users\gonzalo\documents\materias de facultad\algoritmos y estructuras de datos  i\tp\tp_integrador\tdacae\tp_integrador_tda\libreria_tda.h
 
-1604008113 c:\users\gonzalo\documents\materias de facultad\algoritmos y estructuras de datos  i\tp\tp_integrador\tdacae\tp_integrador_tda\lib_tda_cola_est_cir.h
+1604010246 c:\users\gonzalo\documents\materias de facultad\algoritmos y estructuras de datos  i\tp\tp_integrador\tdacae\tp_integrador_tda\lib_tda_cola_est_cir.h
 

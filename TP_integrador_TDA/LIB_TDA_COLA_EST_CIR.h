@@ -12,15 +12,15 @@ typedef struct tCola
 
 void ccCrear (tCola* k)
 {
-    k->frente = 1 ;
-    k->finc = 1;
+    k->frente = 0 ;
+    k->finc = 0;
 }
 
 int ccLlena (tCola* k)
 {
     /* Si devuelve 1 significa que está llena */
     int res;
-    if ((k->finc + 1 == k->frente)||(k->frente == 1 && k->finc == MAX))
+    if ((k->finc + 1 == k->frente)||(k->frente == 0 && k->finc == MAX))
     {
         res = 1;
     }else
@@ -47,7 +47,7 @@ void ccPoner (tCola* k,tDato dato)
 {
     if (k->finc == MAX)
     {
-        k->finc = 1;
+        k->finc = 0;
     }else
     {
         k->finc = k->finc + 1;
@@ -66,15 +66,5 @@ void ccSacar (tCola* k, tDato dato)
     }
     dato = k->arrCC[k->frente];
 }
-
-     /*   int res;
-        if (k.finc + 1 == k.frente) || (k.frente == 1 && k.finc == MAX)
-        {
-            res = 1;
-        }else
-        {
-            res = 0;
-        }
-        return res;*/
 
 #endif // LIB_TDA_COLA_EST_CIR
