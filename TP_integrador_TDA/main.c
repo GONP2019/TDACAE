@@ -27,10 +27,10 @@
 
     if (ccLlena(&k)== 1)
     {
-        printf("Cola llena");
+        printf("Cola llena \n");
 
-        for (int j=0;j<=MAX;j++){
-            printf("El numero es %i \n",k.arrCC[j]);
+        for (int j=0;j<=MAX-1;j++){
+            printf("Los numeros son:  %i \n",k.arrCC[j]);
         }
     }
     else{

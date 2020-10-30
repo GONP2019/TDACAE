@@ -50,7 +50,10 @@ void ccPoner (tCola* k,tDato dato)
         k->finc = 0;
     }else
     {
+
         k->finc = k->finc + 1;
+
+
     }
     k->arrCC[k->finc] = dato;
 }
