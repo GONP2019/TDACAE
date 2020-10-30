@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
 
+
 void inicol (tCola* k)
 {
     for(int h=0;h<=MAX;h++)
@@ -10,15 +11,46 @@ void inicol (tCola* k)
     }
 }
 
+int RevFinDat (Fin)
+{
+    do
+    {
+        printf ("Ingrese 1 si desea ingresar datos o ingrese 0 para terminar el proceso \n");
+        scanf("%i",&Fin);
+    }while ((Fin != 1) | (Fin != 0));
+}
+
+
  main()
 {
+    tDato dato;
+    tCola k;
+    int Fin;
+    RevFinDat (Fin);
+    while ( Fin != 0 && ccLlena(&k)!= 1)
+    {
+        printf("Ingrese numero entero positivo: \n");
+        scanf ("%i",&dato);
+        ccPoner(&k,dato);
+        RevFinDat (Fin);
+    }
+
+
+
+
+
+
+
+
+
+    /* Prueba de TDA_COLA_CIRCULAR
     tDato dato;
     tCola k;
     int rt;
     ccCrear(&k);
 
-    /*printf("Desea ingresar datos ? S/N \n");
-    scanf ("%c",rt);*/
+    printf("Desea ingresar datos ? S/N \n");
+    scanf ("%c",rt);
 
     inicol(&k);
 
@@ -59,7 +91,9 @@ void inicol (tCola* k)
             ccSacar(&k,&dato);
             printf("Numero: %i \n",dato);
         }
-    }
+    }*/
+
+
 }
 
 /*void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
