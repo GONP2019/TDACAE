@@ -1,7 +1,7 @@
 #ifndef LIB_TDA_COLA_EST_CIR
 #define LIB_TDA_COLA_EST_CIR
-#define MAX 5
-typedef int tDato;
+#define MAX 4
+typedef signed int tDato;
 
 typedef struct tCola
 {
@@ -50,9 +50,8 @@ void ccPoner (tCola* k,tDato dato)
         k->finc = 0;
     }else
     {
-
+        /*if (k->finc =) {}*/
         k->finc = k->finc + 1;
-
 
     }
     k->arrCC[k->finc] = dato;
@@ -62,12 +61,12 @@ void ccSacar (tCola* k, tDato dato)
 {
     if (k->frente == MAX)
     {
-        k->frente = 1;
+        k->frente = 0;
     }else
     {
         k->frente = k->frente + 1;
     }
-    dato = k->arrCC[k->frente];
+    dato = &k->arrCC[k->frente];
 }
 
 #endif // LIB_TDA_COLA_EST_CIR
