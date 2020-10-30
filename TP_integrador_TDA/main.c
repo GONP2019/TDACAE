@@ -38,8 +38,9 @@ void inicol (tCola* k)
     if (ccLlena(&k)== 1)
     {
         printf("Cola llena \n");
+        printf("\n");
 
-        for (int j=1;j<=MAX;j++){
+        for (int j=0;j<=MAX-1;j++){
             printf("%i \t",k.arrCC[j]);
         }
     }
