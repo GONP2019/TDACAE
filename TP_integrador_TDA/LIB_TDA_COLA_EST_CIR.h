@@ -1,6 +1,6 @@
 #ifndef LIB_TDA_COLA_EST_CIR
 #define LIB_TDA_COLA_EST_CIR
-#define MAX 9
+#define MAX 10
 typedef signed int tDato;
 
 typedef struct tCola

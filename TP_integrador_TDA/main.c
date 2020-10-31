@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
-
+#include "LIB_TDA_PILA_EST_COR.h"
+/*#include "LIB_TDA_PILA_LSE.h"*/
 
 void inicol (tCola* k)
 {
@@ -11,89 +12,55 @@ void inicol (tCola* k)
     }
 }
 
-int RevFinDat (Fin)
+int RevFinDat (int rt)
 {
     do
     {
         printf ("Ingrese 1 si desea ingresar datos o ingrese 0 para terminar el proceso \n");
-        scanf("%i",&Fin);
-    }while ((Fin != 1) | (Fin != 0));
+        fflush (stdin);
+        scanf("%i",&rt);
+    }while (rt != 0 && rt != 1);
+
+    return rt;
 }
 
 
  main()
 {
     tDato dato;
+    tPila p;
     tCola k;
-    int Fin;
-    RevFinDat (Fin);
-    while ( Fin != 0 && ccLlena(&k)!= 1)
+    int rt;
+    int error;
+    ccCrear(&k);
+    pCrear(&p);
+    inicol (&k);
+    RevFinDat (&rt);
+    while ( rt != 0 && ccLlena(&k)!= 1)
     {
         printf("Ingrese numero entero positivo: \n");
         scanf ("%i",&dato);
         ccPoner(&k,dato);
-        RevFinDat (Fin);
+        RevFinDat (&rt);
     }
 
-
-
-
-
-
-
-
-
-    /* Prueba de TDA_COLA_CIRCULAR
-    tDato dato;
-    tCola k;
-    int rt;
-    ccCrear(&k);
-
-    printf("Desea ingresar datos ? S/N \n");
-    scanf ("%c",rt);
-
-    inicol(&k);
-
-    printf("Desea ingresar datos ? 1/0 \n");
-    scanf ("%i",&rt);
-
-
-    while (rt == 1 && ccLlena(&k)!= 1)
-        {
-            printf("Ingrese numero entero positivo\n");
-            scanf ("%i",&dato);
-            ccPoner(&k,dato);
-            printf("Desea ingresar datos ? 1/0 \n");
-            scanf ("%i",&rt);
-        }
-
-    if (ccLlena(&k)== 1)
+    if (rt != 0){
+        printf ("Error, la estructura de datos se ha llenado. \n");
+        error = 1;
+    }else
     {
-        printf("Cola llena \n");
-        printf("\n");
-
-        for (int j=0;j<=MAX-1;j++){
-            printf("%i \t",k.arrCC[j]);
-        }
-    }
-    else{
-        printf("Todavia hay espacio \n");
+       error = 0;
     }
 
-    int rt2;
-    printf("Desea sacar todos los datos ? 1/0 \n");
-    scanf ("%i",&rt2);
-
-    if (rt2 == 1)
+    if (error != 1){
+      /*  Procesar    ();
+        MostrarPil  ();
+        MostrarLisp ();
+        MostrarLisi ();*/
+    }else
     {
-        while (ccVacia(&k)!=1)
-        {
-            ccSacar(&k,&dato);
-            printf("Numero: %i \n",dato);
-        }
-    }*/
-
-
+        printf("No ha sido posible continuar con el proceso. \n");
+    }
 }
 
 /*void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
