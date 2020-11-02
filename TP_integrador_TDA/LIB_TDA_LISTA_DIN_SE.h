@@ -1,18 +1,19 @@
 #ifndef LIB_TDA_LISTA_DIN_SE
 #endif // LIB_TDA_LISTA_DIN_SE
 
-typedef struct tDato
+typedef struct tDatos
 {
     int clave;
-}
+}tDatos;
+
 
 typedef struct nodo
 {
-    tDato info;
+    tDatos info;
     struct nodo* sig;
 }Nodo;
 
-typdef struct tLista
+typedef struct tLista
 {
     struct nodo* cab;
     struct nodo* actual;
@@ -20,7 +21,7 @@ typdef struct tLista
 
 void lCrear(tLista* l)
 {
-    (*l)->cab = NULL;
+    (*l).cab = NULL;
 }
 
 int lLlena(tLista* l)
@@ -30,80 +31,80 @@ int lLlena(tLista* l)
 
 int lVacia(tLista* l)
 {
-    return (*l)->cab == NULL;
+    return (*l).cab == NULL;
 }
 
 int lFin(tLista* l)
 {
-    return (*l)->actual == NULL;
+    return (*l).actual == NULL;
 }
 
 void lPpio(tLista* l)
 {
-    (*l)->actual = (*l)->cab
+    (*l).actual = (*l).cab;
 }
 
 void lInfo(tLista* l, int* x)
 {
-    *x = (*l)->actual
+    *x = (*l).actual;
 }
 
 void Modificar(tLista* l, int x)
 {
-    (*l)->actual = x
+    (*l).actual = x;
 }
 
 void lSig(tLista* l)
 {
-    (*l)->actual = (*l)->actual->sig
+    (*l).actual = l->actual->sig;
 }
 
-void lInsertarPpio(tLista* l, tDato x)
+void lInsertarPpio(tLista* l, tDatos x)
 {
     Nodo* nodo;
     nodo=(Nodo*)malloc(sizeof(Nodo));
     nodo->info = x;
-    nodo->sig = (*l)->cab;
-    (*l)->cab = nuevo;
+    nodo->sig = (*l).cab;
+    (*l).cab = nodo;
 }
 
-void lInsertarFin(tLista* l, tDato x)
+void lInsertarFin(tLista* l, tDatos x)
 {
     Nodo* aux;
     Nodo* nodo;
     nodo=(Nodo*)malloc(sizeof(Nodo));
-    if((*l)->cab == NULL) {
-        (*l)->cab = nuevo;
+    if((*l).cab == NULL) {
+        (*l).cab = nodo;
     } else {
-        aux = (*l)->cab
+        aux = (*l).cab;
         while(aux->sig != NULL)
         {
             aux = aux->sig;
         }
-        aux->sig = nuevo;
+        aux->sig = nodo;
     }
 }
 
-void lInsertarOrden(tLista* l, tDato x, char orden)
+void lInsertarOrden(tLista* l, tDatos x, char orden)
 {
     Nodo* aux;
     Nodo* nodo;
     nodo=(Nodo*)malloc(sizeof(Nodo));
-    if((*l)->cab == NULL)
+    if((*l).cab == NULL)
     {
-        (*l)->cab = nodo;
-    }else{
-        if((x->clave > (l*)->cab->info->clave && orden = 'D') || (x->clave < (l*)->cab->info->clave && orden = 'A'))
+        (*l).cab = nodo;
+    } else {
+        if((x.clave > (l*).cab.info.clave && orden = 'D') || (x.clave < (l*).cab.info.clave && orden = 'A'))
         {
-            nuevo-sig = (*l)->cab;
-            (*l)->cab = nodo;
+            nodo->sig = (*l).cab;
+            (*l).cab = nodo;
         } else {
-            aux = (*l)->cab;
-            while(aux->sig != NULL && (x->clave > aux->sig->info->clave && orden = 'A') || (x->clave < aux->sig->info->clave && orden = 'D'))
+            aux = (*l).cab;
+            while(aux->sig != NULL && (x.clave > aux->sig->info.clave && orden = 'A') || (x.clave < aux->sig->info->clave && orden = 'D'))
             {
                 aux = aux->sig;
             }
-            nuevo->sig = aux->sig;
+            nodo->sig = aux->sig;
             aux->sig = nodo;
         }
     }
@@ -112,8 +113,8 @@ void lInsertarOrden(tLista* l, tDato x, char orden)
 void lBorrarPpio(tLista* l)
 {
     Nodo* aux;
-    aux = (*l)->cab;
-    (*l)->cab = (*l)->cab->sig;
+    aux = (*l).cab;
+    (*l).cab = l->cab->sig;
     free(aux);
 }
 
@@ -121,30 +122,30 @@ void lBorrarActual(tLista* l)
 {
     Nodo* aux;
     Nodo* t;
-    aux = (l*)->actual
-    if((*l)->actual = (*l)->cab)
+    aux = (l*).actual;
+    if((*l).actual = (*l).cab)
     {
-        if((*l)->cab->sig = NULL)
+        if(l->cab->sig = NULL)
         {
-            (*l)->cab = NULL;
-            (*l)->actual = NULL;
+            (*l).cab = NULL;
+            (*l).actual = NULL;
         }else{
-            (*l)->cab = (*l)->cab->sig;
-            (*l)->actual = (*l)->actual->sig;
+            (*l).cab = l->cab->sig;
+            (*l).actual = l->actual->sig;
         }
     }else{
-        t = (*l)->cab;
-        while(t->sig != (*l)->actual)
+        t = (*l).cab;
+        while(t->sig != (*l).actual)
         {
             t = t->sig;
         }
-        t->sig = (*l)->actual->sig;
-        (*l)->actual = (*l)->actual->sig;
+        t->sig = l->actual->sig;
+        (*l).actual = l->actual->sig;
     }
     free(aux);
 }
 
-void lBuscarOrdenado(tLista* l, int x->clave, int existe)
+void lBuscarOrdenado(tLista* l, int, int x.clave, int existe)
 {
     Nodo* aux;
     *existe = 0;
@@ -183,4 +184,4 @@ void lBuscarOrdenado(tLista* l, int x->clave, int existe)
         }
     }
 }
-#endif
+
