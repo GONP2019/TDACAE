@@ -5,6 +5,8 @@
 #include "LIB_TDA_LISTA_DIN_SE.h"
 /*#include "LIB_TDA_PILA_LSE.h"*/
 
+
+/* Inicializa el array de tCola en ceros*/
 void inicol (tCola* k)
 {
     for(int h=0;h<=MAX;h++)
@@ -13,6 +15,8 @@ void inicol (tCola* k)
     }
 }
 
+
+/* Funcion pregunta si hay mas datos que ingresar*/
 int RevFinDat (int rt)
 {
     do
@@ -26,6 +30,8 @@ int RevFinDat (int rt)
 }
 
 
+
+/* codigo principal*/
  main()
 {
     tDato dato;
@@ -63,6 +69,12 @@ int RevFinDat (int rt)
         printf("No ha sido posible continuar con el proceso. \n");
     }
 }
+
+
+
+
+
+
 
 /*void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
 {
