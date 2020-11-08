@@ -48,10 +48,10 @@ void ingnum (tDato *dato)
 /* Código principal*/
  main()
 {
-    tDato *dato;
+    tDato dato;
     tPila p;
     tCola k;
-    char rt ='P';
+    char rt;
     int error;
     cCrear(&k);
     pCrear(&p);
