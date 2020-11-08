@@ -100,13 +100,13 @@ void MostrarPil(tPila* p)
 }
 
 
-void procesar(tCola* k,tPila* p,int error,tDato* dato)
+void procesar(tCola* k,tPila* p,int error,tDato dato)
 {
     error = 0;
     while(cVacia(&k)!=1 && error != 1)
     {
         cSacar(&k,&dato);
-        if(*dato % 2 == 0)
+        if(dato % 2 == 0)
         {
             if(!pLlena(&p))
             {
