@@ -29,16 +29,17 @@ char RevFinDat (char rt)
     return rt;
 }
 
-void ingnum (tDato* dato)
+void ingnum (tDato *dato)
 {
-
+    int num;
     do
     {
         printf("Ingrese numero entero positivo: \n");
         fflush (stdin);
-        scanf ("%i",&dato);
-    }while (dato < 0);
+        scanf ("%i",&num);
+    }while (num < 0);
 
+    *dato = &num;
 
 }
 
@@ -47,7 +48,7 @@ void ingnum (tDato* dato)
 /* Código principal*/
  main()
 {
-    tDato dato = 0;
+    tDato *dato ;
     tPila p;
     tCola k;
     char rt;

@@ -43,7 +43,7 @@ int cVacia (tCola* k)
     return res;
 }
 
-void cPoner (tCola* k,tDato dato)
+void cPoner (tCola* k,tDato *dato)
 {
     if (k->finc == MAX-1)
     {
@@ -54,7 +54,7 @@ void cPoner (tCola* k,tDato dato)
         k->finc = k->finc + 1;
 
     }
-    k->arrCC[k->finc] = dato;
+    k->arrCC[k->finc] = *dato;
 }
 
 void cSacar (tCola* k, tDato* dato)
