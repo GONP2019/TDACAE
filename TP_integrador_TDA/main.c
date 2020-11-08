@@ -17,16 +17,16 @@ void inicol (tCola* k)
 
 /*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
-char RevFinDat (char rt)
+void RevFinDat (char* rt)
 {
+    char rts;
     do
     {
         printf ("Desea ingresar datos ? \n");
         fflush (stdin);
-        scanf("%c",&rt);
-    }while (rt != 'S' && rt != 'N');
-
-    return rt;
+        scanf("%c",&rts);
+    }while (rts != 'S' && rts != 'N');
+    *rt = rts;
 }
 
 void ingnum (tDato *dato)
@@ -48,18 +48,22 @@ void ingnum (tDato *dato)
 /* Código principal*/
  main()
 {
-    tDato *dato ;
+    tDato *dato;
     tPila p;
     tCola k;
-    char rt;
+    char rt ='P';
     int error;
     cCrear(&k);
     pCrear(&p);
     inicol(&k);
-    while ( RevFinDat(&rt) == 'S' && cLlena(&k)!= 1)
+    RevFinDat(&rt);
+    printf("El dato ingresado es:%c \n",rt);
+
+    while ( rt == 'S' && cLlena(&k)!= 1)
     {
         ingnum(&dato);
         cPoner(&k,dato);
+        RevFinDat(&rt);
     }
 
     if (rt == 'S'){
