@@ -28,13 +28,14 @@ void RevFinDat (char* rt)
     }while (rts != 'S' && rts != 'N');
     *rt = rts;
 }
-
+/*/////////////////////////////////////////////////////////////*/
+/* Proceso que valida el ingreso de un numero entero positivo */
 void ingnum (tDato *dato)
 {
     int num;
     do
     {
-        printf("Ingrese numero entero positivo: \n");
+        printf("Ingrese n%cmero entero positivo: \n",163);
         fflush (stdin);
         scanf ("%i",&num);
     }while (num < 0);
@@ -43,6 +44,14 @@ void ingnum (tDato *dato)
 
 }
 
+void MostrarPil(tPila* p)
+{
+    int x;
+    for (int f=0;f<=p->cima;f++)
+    {
+        printf("Elemento de la pila: %i \n",p->elem[f]);
+    }
+}
 
 /*//////////////////////////////////////*/
 /* Código principal*/
@@ -57,8 +66,6 @@ void ingnum (tDato *dato)
     pCrear(&p);
     inicol(&k);
     RevFinDat(&rt);
-    printf("El dato ingresado es:%c \n",rt);
-
     while ( rt == 'S' && cLlena(&k)!= 1)
     {
         ingnum(&dato);
@@ -67,23 +74,53 @@ void ingnum (tDato *dato)
     }
 
     if (rt == 'S'){
-        printf ("Error, la estructura de datos se ha llenado. \n");
-        error = 1;
-    }else
-    {
-       error = 0;
-    }
+        printf ("Error,no ha respetado el m%cximo de datos a ingresar. Estructura de datos llena.\n",160);
+        printf("Desea comenzar nuevamente ? S\N \n");
+        RevFinDat(&rt);
+        if (rt =='S')
+        {
+           system("main.exe");
+        }else{
+           exit(-1);
+        }
 
-    if (error != 1){
-      /*  Procesar    ();
-        MostrarPil  ();
-        MostrarLisp ();
-        MostrarLisi ();*/
     }else
     {
-        printf("No ha sido posible continuar con el proceso. \n");
+       printf("Comienzo del proceso. \n");
+       procesar(&k,&error,&p,&dato);
+           if (error != 1){
+                MostrarPil(&p);
+                /*MostrarLisp ();
+                MostrarLisi ();*/
+          }else{
+                printf("No ha sido posible continuar con el proceso.\n");
+                printf("Finalizando sistema....\n");
+          }
     }
 }
+
+
+void procesar(tCola* k,tPila* p,int error,tDato* dato)
+{
+    error = 0;
+    while(cVacia(&k)!=1 && error != 1)
+    {
+        cSacar(&k,&dato);
+        if(*dato % 2 == 0)
+        {
+            if(!pLlena(&p))
+            {
+                pPoner(&p,dato);
+            } else {
+                error = 1;
+            }
+        }
+
+    }
+}
+
+
+
 
 
 

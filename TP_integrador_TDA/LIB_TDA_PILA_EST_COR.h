@@ -1,6 +1,6 @@
 #ifndef LIB_TDA_PILA_EST_COR_H_INCLUDED
 #define LIB_TDA_PILA_EST_COR_H_INCLUDED
-#define MAX 10
+#define MAX 5
 
 typedef unsigned int tDato;
 
