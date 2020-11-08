@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
 #include "LIB_TDA_PILA_EST_COR.h"
-#include "LIB_TDA_LISTA_DIN_SE.h"
+/*#include "LIB_TDA_LISTA_DIN_SE.h"*/
 /*#include "LIB_TDA_PILA_LSE.h"*/
 
-
+/*//////////////////////////////////////*/
 /* Inicializa el array de tCola en ceros*/
 void inicol (tCola* k)
 {
@@ -15,43 +15,53 @@ void inicol (tCola* k)
     }
 }
 
-
+/*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
-int RevFinDat (int rt)
+char RevFinDat (char rt)
 {
     do
     {
-        printf ("Ingrese 1 si desea ingresar datos o ingrese 0 para terminar el proceso \n");
+        printf ("Desea ingresar datos ? \n");
         fflush (stdin);
-        scanf("%i",&rt);
-    }while (rt != 0 && rt != 1);
+        scanf("%c",&rt);
+    }while (rt != 'S' && rt != 'N');
 
     return rt;
 }
 
-
-
-/* codigo principal*/
- main()
+void ingnum (tDato* dato)
 {
-    tDato dato;
-    tPila p;
-    tCola k;
-    int rt;
-    int error;
-    ccCrear(&k);
-    pCrear(&p);
-    inicol (&k);
-    RevFinDat (&rt);
-    while ( rt != 0 && ccLlena(&k)!= 1)
+
+    do
     {
         printf("Ingrese numero entero positivo: \n");
+        fflush (stdin);
         scanf ("%i",&dato);
-        ccPoner(&k,dato);
-        RevFinDat (&rt);
+    }while (dato < 0);
+
+
+}
+
+
+/*//////////////////////////////////////*/
+/* Código principal*/
+ main()
+{
+    tDato dato = 0;
+    tPila p;
+    tCola k;
+    char rt;
+    int error;
+    cCrear(&k);
+    pCrear(&p);
+    inicol(&k);
+    while ( RevFinDat(&rt) == 'S' && cLlena(&k)!= 1)
+    {
+        ingnum(&dato);
+        cPoner(&k,dato);
     }
 
-    if (rt != 0){
+    if (rt == 'S'){
         printf ("Error, la estructura de datos se ha llenado. \n");
         error = 1;
     }else

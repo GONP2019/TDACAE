@@ -2,6 +2,7 @@
 #define LIB_TDA_PILA_EST_COR_H_INCLUDED
 #define MAX 10
 
+typedef unsigned int tDato;
 
 typedef struct tPila
 {

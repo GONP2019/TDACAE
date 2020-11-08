@@ -1,7 +1,7 @@
 #ifndef LIB_TDA_COLA_EST_CIR
 #define LIB_TDA_COLA_EST_CIR
-#define MAX 10
-typedef signed int tDato;
+#define MAX 5
+typedef unsigned int tDato;
 
 typedef struct tCola
 {
@@ -10,13 +10,13 @@ typedef struct tCola
     int arrCC[MAX];
 }tCola;
 
-void ccCrear (tCola* k)
+void cCrear (tCola* k)
 {
     k->frente = 0 ;
     k->finc = 0;
 }
 
-int ccLlena (tCola* k)
+int cLlena (tCola* k)
 {
     /* Si devuelve 1 significa que está llena */
     int res;
@@ -30,7 +30,7 @@ int ccLlena (tCola* k)
     return res;
 }
 
-int ccVacia (tCola* k)
+int cVacia (tCola* k)
 {
     int res;
     if (k->finc == k->frente)
@@ -43,9 +43,9 @@ int ccVacia (tCola* k)
     return res;
 }
 
-void ccPoner (tCola* k,tDato dato)
+void cPoner (tCola* k,tDato dato)
 {
-    if (k->finc == MAX)
+    if (k->finc == MAX-1)
     {
         k->finc = 0;
     }else
@@ -57,9 +57,9 @@ void ccPoner (tCola* k,tDato dato)
     k->arrCC[k->finc] = dato;
 }
 
-void ccSacar (tCola* k, tDato* dato)
+void cSacar (tCola* k, tDato* dato)
 {
-    if (k->frente == MAX)
+    if (k->frente == MAX-1)
     {
         k->frente = 0;
     }else
