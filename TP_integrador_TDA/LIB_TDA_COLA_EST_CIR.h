@@ -59,6 +59,7 @@ void cPoner (tCola* k,tDato *dato)
 
 void cSacar (tCola* k, tDato* dato)
 {
+
     if (k->frente == MAX-1)
     {
         k->frente = 0;
@@ -66,7 +67,8 @@ void cSacar (tCola* k, tDato* dato)
     {
         k->frente = k->frente + 1;
     }
-    *dato = k->arrCC[k->frente];
+     *dato  = k->arrCC[k->frente];
+
 }
 
 #endif // LIB_TDA_COLA_EST_CIR

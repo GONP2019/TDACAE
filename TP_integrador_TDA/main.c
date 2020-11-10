@@ -53,6 +53,7 @@ void MostrarPil(tPila* p)
     }
 }
 
+
 /*//////////////////////////////////////*/
 /* Código principal*/
  main()
@@ -100,8 +101,9 @@ void MostrarPil(tPila* p)
 }
 
 
-void procesar(tCola* k,tPila* p,int error,tDato dato)
+void procesar(tCola k,tPila p,int error,tDato dato)
 {
+    printf ("El contenido de la variable dato es: %i \n",dato);
     error = 0;
     while(cVacia(&k)!=1 && error != 1)
     {
