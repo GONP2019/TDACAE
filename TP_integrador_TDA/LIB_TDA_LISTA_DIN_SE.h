@@ -1,5 +1,5 @@
 #ifndef LIB_TDA_LISTA_DIN_SE
-#endif // LIB_TDA_LISTA_DIN_SE
+
 
 typedef struct tDatos
 {
@@ -7,16 +7,16 @@ typedef struct tDatos
 }tDatos;
 
 
-typedef struct nodo
+typedef struct Nodo
 {
     tDatos info;
-    struct nodo* sig;
+    struct Nodo* sig;
 }Nodo;
 
 typedef struct tLista
 {
-    struct nodo* cab;
-    struct nodo* actual;
+    struct Nodo* cab;
+    struct Nodo* actual;
 }tLista;
 
 void lCrear(tLista* l)
@@ -26,7 +26,14 @@ void lCrear(tLista* l)
 
 int lLlena(tLista* l)
 {
-    return 0;
+    Nodo* t;
+    t = (Nodo*)malloc(sifeof(t));
+    int d = 0;
+    if (t == NULL)
+    {
+        d = 1;
+    }
+    return d;
 }
 
 int lVacia(tLista* l)
@@ -56,7 +63,7 @@ void Modificar(tLista* l, int x)
 
 void lSig(tLista* l)
 {
-    (*l).actual = l->actual->sig;
+    l->actual = l->actual->sig;
 }
 
 void lInsertarPpio(tLista* l, tDatos x)
@@ -145,7 +152,30 @@ void lBorrarActual(tLista* l)
     free(aux);
 }
 
-void lBuscarOrdenado(tLista* l, int, int x.clave, int existe)
+void lBorrarFin(tLista* l)
+{
+    Nodo* aux;
+    Nodo* h;
+    aux = (*l).cab;
+    if ((*l).cab == NULL)
+    {
+        (*l).cab = NULL;
+        free(aux);
+    }else{
+        while(aux->sig->sig != NULL)
+        {
+            aux = aux->sig;
+        }
+        h = aux->sig
+        aux->sig = NULL;
+        free(h);
+    }
+
+}
+
+
+
+void lBuscarOrdenado(tLista* l, int x.clave, int existe)
 {
     Nodo* aux;
     *existe = 0;
@@ -185,3 +215,4 @@ void lBuscarOrdenado(tLista* l, int, int x.clave, int existe)
     }
 }
 
+#endif // LIB_TDA_LISTA_DIN_SE

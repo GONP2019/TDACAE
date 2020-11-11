@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
 #include "LIB_TDA_PILA_EST_COR.h"
-/*#include "LIB_TDA_LISTA_DIN_SE.h"*/
+#include "LIB_TDA_LISTA_DIN_SE.h"
 /*#include "LIB_TDA_PILA_LSE.h"*/
 
 /*//////////////////////////////////////*/
@@ -53,6 +53,14 @@ void MostrarPil(tPila* p)
     }
 }
 
+void inipil(tPila* p)
+{
+    for(int f=-1;f<=MAX-1;f++)
+    {
+      p->elem[f] = 0;
+    }
+}
+
 
 /*//////////////////////////////////////*/
 /* Código principal*/
@@ -66,6 +74,7 @@ void MostrarPil(tPila* p)
     cCrear(&k);
     pCrear(&p);
     inicol(&k);
+    inipil(&p);
     RevFinDat(&rt);
     while ( rt == 'S' && cLlena(&k)!= 1)
     {
@@ -88,7 +97,7 @@ void MostrarPil(tPila* p)
     }else
     {
        printf("Comienzo del proceso. \n");
-       procesar(&k,&error,&p,&dato);
+       procesar(&k,&p,&error,&dato);
            if (error != 1){
                 MostrarPil(&p);
                 /*MostrarLisp ();
@@ -103,7 +112,7 @@ void MostrarPil(tPila* p)
 
 void procesar(tCola k,tPila p,int error,tDato dato)
 {
-    printf ("El contenido de la variable dato es: %i \n",dato);
+
     error = 0;
     while(cVacia(&k)!=1 && error != 1)
     {
@@ -119,6 +128,11 @@ void procesar(tCola k,tPila p,int error,tDato dato)
         }
 
     }
+     for(int g=0;g<=p.cima;g++)
+        {
+          printf("El valor es:%i \n",p.elem[g]);
+
+        }
 }
 
 
