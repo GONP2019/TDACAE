@@ -9,7 +9,7 @@ typedef struct tDatos
 
 typedef struct Nodo
 {
-    tDatos info;
+    tDatos* info;
     struct Nodo* sig;
 }Nodo;
 
@@ -27,7 +27,7 @@ void lCrear(tLista* l)
 int lLlena(tLista* l)
 {
     Nodo* t;
-    t = (Nodo*)malloc(sifeof(t));
+    t = (Nodo*)malloc(sizeof(t));
     int d = 0;
     if (t == NULL)
     {
@@ -66,7 +66,7 @@ void lSig(tLista* l)
     l->actual = l->actual->sig;
 }
 
-void lInsertarPpio(tLista* l, tDatos x)
+void lInsertarPpio(tLista* l, tDatos* x)
 {
     Nodo* nodo;
     nodo=(Nodo*)malloc(sizeof(Nodo));
@@ -92,7 +92,7 @@ void lInsertarFin(tLista* l, tDatos x)
     }
 }
 
-void lInsertarOrden(tLista* l, tDatos x, char orden)
+void lInsertarOrden(tLista* l, tDatos* x, char orden)
 {
     Nodo* aux;
     Nodo* nodo;
@@ -101,19 +101,22 @@ void lInsertarOrden(tLista* l, tDatos x, char orden)
     {
         (*l).cab = nodo;
     } else {
-        if((x.clave > (l*).cab.info.clave && orden = 'D') || (x.clave < (l*).cab.info.clave && orden = 'A'))
+        /*if((x->clave > l->cab->info->clave && orden = 'D') || (x->clave < l->cab->info->clave && orden = 'A'))*/
+        if(((x->clave > l->cab->info->clave)&& (orden = 'D'))|| ((x->clave < l->cab->info->clave)&& (orden = 'A')))
         {
             nodo->sig = (*l).cab;
             (*l).cab = nodo;
         } else {
             aux = (*l).cab;
-            while(aux->sig != NULL && (x.clave > aux->sig->info.clave && orden = 'A') || (x.clave < aux->sig->info->clave && orden = 'D'))
+           /* while((aux->sig != NULL && ((x->clave > aux->sig->info->clave) && (orden = 'A')) || ((x->clave < aux->sig->info->clave) && (orden = 'D')))
             {
                 aux = aux->sig;
-            }
+            }*/
             nodo->sig = aux->sig;
             aux->sig = nodo;
+            int a=3;
         }
+
     }
 }
 
@@ -129,7 +132,7 @@ void lBorrarActual(tLista* l)
 {
     Nodo* aux;
     Nodo* t;
-    aux = (l*).actual;
+    aux = (*l).actual;
     if((*l).actual = (*l).cab)
     {
         if(l->cab->sig = NULL)
@@ -166,7 +169,7 @@ void lBorrarFin(tLista* l)
         {
             aux = aux->sig;
         }
-        h = aux->sig
+        h = aux->sig;
         aux->sig = NULL;
         free(h);
     }
@@ -175,27 +178,27 @@ void lBorrarFin(tLista* l)
 
 
 
-void lBuscarOrdenado(tLista* l, int x.clave, int existe)
+void lBuscarOrdenado(tLista* l, int x, int existe)
 {
     Nodo* aux;
-    *existe = 0;
-    if((*l)->cab != NULL)
+    existe = 0;
+    if(l->cab != NULL)
     {
-        if((*l)->info->clave = x)
+        if(l->cab->info->clave = x)
         {
             existe = 1;
-            (*l)->actual = (*l)->cab;
+            l->actual = l->cab;
         }else{
-            aux = (*l)->cab;
-            while((aux != NULL) && (*l)->cab->info->clave = aux->info->clave)
+            aux = l->cab;
+            while((aux != NULL) && (l->cab->info->clave == aux->info->clave))
             {
                 aux = aux->sig;
             }
             if(aux != NULL)
             {
-                if((*l)->cab->info->clave < aux->info->clave)
+                if(l->cab->info->clave < aux->info->clave)
                 {
-                    while(aux != nil && aux->info->clave < x)
+                    while((aux != NULL) && (aux->info->clave < x))
                     {
                         aux = aux->sig;
                     }
@@ -205,10 +208,10 @@ void lBuscarOrdenado(tLista* l, int x.clave, int existe)
                         aux = aux->sig;
                     }
                 }
-                if(aux != NULL && aux->info->clave = x)
+                if((aux != NULL) && (aux->info->clave = x))
                 {
                     existe = 1;
-                    (*l)->actual = aux;
+                    l->actual = aux;
                 }
             }
         }
