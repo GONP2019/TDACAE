@@ -97,6 +97,8 @@ void lInsertarOrden(tLista* l, tDatos* x, char orden)
     Nodo* aux;
     Nodo* nodo;
     nodo=(Nodo*)malloc(sizeof(Nodo));
+    nodo->info = x;
+    nodo->sig = NULL;
     if((*l).cab == NULL)
     {
         (*l).cab = nodo;
@@ -108,14 +110,13 @@ void lInsertarOrden(tLista* l, tDatos* x, char orden)
             (*l).cab = nodo;
         } else {
             aux = (*l).cab;
-           /* while((aux->sig != NULL && ((x->clave > aux->sig->info->clave) && (orden = 'A')) || ((x->clave < aux->sig->info->clave) && (orden = 'D')))
+            while((aux->sig != NULL) && (((x->clave > aux->sig->info->clave) && (orden = 'A')) || ((x->clave < aux->sig->info->clave) && (orden = 'D'))))
             {
                 aux = aux->sig;
-            }*/
+            }
             nodo->sig = aux->sig;
             aux->sig = nodo;
-            int a=3;
-        }
+            }
 
     }
 }

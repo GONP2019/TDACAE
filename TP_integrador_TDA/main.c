@@ -69,10 +69,14 @@ void inipil(tPila* p)
     tDato dato;
     tPila p;
     tCola k;
+    tLista I;
+    tLista PM;
     char rt;
     int error;
     cCrear(&k);
     pCrear(&p);
+    lCrear(&I);
+    lCrear(&PM);
     inicol(&k);
     inipil(&p);
     RevFinDat(&rt);
@@ -97,7 +101,7 @@ void inipil(tPila* p)
     }else
     {
        printf("Comienzo del proceso. \n");
-       procesar(&k,&p,&error,&dato);
+       procesar(&k,&p,&I,&PM,&error,&dato);
            if (error != 1){
                 MostrarPil(&p);
                 /*MostrarLisp ();
@@ -110,7 +114,7 @@ void inipil(tPila* p)
 }
 
 
-void procesar(tCola k,tPila p,int error,tDato dato)
+void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 {
 
     error = 0;
@@ -125,14 +129,27 @@ void procesar(tCola k,tPila p,int error,tDato dato)
             } else {
                 error = 1;
             }
+        }else{
+                if(!lLlena(&I))
+               {
+                   lInsertarOrden(&I,dato,'D');
+               } else {
+                    error = 1;
+               }
+
         }
+        tLista *aux ;
+        aux = &I;
+        while (aux->cab != NULL)
+        {
+            printf("El numero impar es: %i",&aux->cab->info->clave);
+            aux->cab = aux->cab->sig;
+
+        }
+
 
     }
-     for(int g=0;g<=p.cima;g++)
-        {
-          printf("El valor es:%i \n",p.elem[g]);
 
-        }
 }
 
 
