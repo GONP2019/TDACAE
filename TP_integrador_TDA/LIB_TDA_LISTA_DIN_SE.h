@@ -27,13 +27,7 @@ void lCrear(tLista* l)
 int lLlena(tLista* l)
 {
     Nodo* t;
-    t = (Nodo*)malloc(sizeof(t));
-    int d = 0;
-    if (t == NULL)
-    {
-        d = 1;
-    }
-    return d;
+    return (t = (Nodo*)malloc(sizeof(t))) == NULL;
 }
 
 int lVacia(tLista* l)
@@ -51,14 +45,14 @@ void lPpio(tLista* l)
     (*l).actual = (*l).cab;
 }
 
-void lInfo(tLista* l, int* x)
+void lInfo(tLista* l, tDatos* x)
 {
-    *x = (*l).actual;
+    x->clave = l->actual->info;
 }
 
-void Modificar(tLista* l, int x)
+void lModificar(tLista* l, tDatos x)
 {
-    (*l).actual = x;
+    l->actual->info = &x;
 }
 
 void lSig(tLista* l)
@@ -68,55 +62,56 @@ void lSig(tLista* l)
 
 void lInsertarPpio(tLista* l, tDatos* x)
 {
-    Nodo* nodo;
-    nodo=(Nodo*)malloc(sizeof(Nodo));
-    nodo->info = x;
-    nodo->sig = (*l).cab;
-    (*l).cab = nodo;
+    Nodo* nuevo;
+    nuevo = (Nodo*)malloc(sizeof(Nodo));
+    nuevo->info = x;
+    nuevo->sig = l->cab;
+    l->cab = nuevo;
 }
 
 void lInsertarFin(tLista* l, tDatos x)
 {
     Nodo* aux;
-    Nodo* nodo;
-    nodo=(Nodo*)malloc(sizeof(Nodo));
-    if((*l).cab == NULL) {
-        (*l).cab = nodo;
+    Nodo* nuevo;
+    nuevo = (Nodo*)malloc(sizeof(Nodo));
+    if(l->cab == NULL) {
+        l->cab = nuevo;
     } else {
-        aux = (*l).cab;
+        aux = l->cab;
         while(aux->sig != NULL)
         {
             aux = aux->sig;
         }
-        aux->sig = nodo;
+        aux->sig = nuevo;
     }
 }
 
-void lInsertarOrden(tLista* l, tDatos* x, char orden)
+void lInsertarOrden(tLista* l, tDatos* dato, char orden)
 {
     Nodo* aux;
-    Nodo* nodo;
-    nodo=(Nodo*)malloc(sizeof(Nodo));
-    nodo->info = x;
-    nodo->sig = NULL;
-    if((*l).cab == NULL)
+    Nodo* nuevo;
+    nuevo =(Nodo*)malloc(sizeof(Nodo));
+    nuevo->info = dato;
+    nuevo->sig = NULL;
+
+    if(l->cab == NULL)
     {
-        (*l).cab = nodo;
+        l->cab = nuevo;
     } else {
-        /*if((x->clave > l->cab->info->clave && orden = 'D') || (x->clave < l->cab->info->clave && orden = 'A'))*/
-        if(((x->clave > l->cab->info->clave)&& (orden = 'D'))|| ((x->clave < l->cab->info->clave)&& (orden = 'A')))
+
+        if(((dato->clave > l->cab->info->clave)&& (orden = 'D'))|| ((dato->clave < l->cab->info->clave)&& (orden = 'A')))
         {
-            nodo->sig = (*l).cab;
-            (*l).cab = nodo;
+            nuevo->sig = l->cab;
+            l->cab = nuevo;
         } else {
-            aux = (*l).cab;
-            while((aux->sig != NULL) && (((x->clave > aux->sig->info->clave) && (orden = 'A')) || ((x->clave < aux->sig->info->clave) && (orden = 'D'))))
+            aux = l->cab;
+            while((aux->sig != NULL) && (((dato->clave > aux->sig->info->clave) && (orden = 'A')) || ((dato->clave < aux->sig->info->clave) && (orden = 'D'))))
             {
                 aux = aux->sig;
             }
-            nodo->sig = aux->sig;
-            aux->sig = nodo;
-            }
+            nuevo->sig = aux->sig;
+            aux->sig = nuevo;
+        }
 
     }
 }
@@ -124,8 +119,8 @@ void lInsertarOrden(tLista* l, tDatos* x, char orden)
 void lBorrarPpio(tLista* l)
 {
     Nodo* aux;
-    aux = (*l).cab;
-    (*l).cab = l->cab->sig;
+    aux = l->cab;
+    l->cab = l->cab->sig;
     free(aux);
 }
 
@@ -133,25 +128,25 @@ void lBorrarActual(tLista* l)
 {
     Nodo* aux;
     Nodo* t;
-    aux = (*l).actual;
-    if((*l).actual = (*l).cab)
+    aux = l->actual;
+    if(l->actual == l->cab)
     {
-        if(l->cab->sig = NULL)
+        if(l->cab->sig == NULL)
         {
-            (*l).cab = NULL;
-            (*l).actual = NULL;
+            l->cab = NULL;
+            l->actual = NULL;
         }else{
-            (*l).cab = l->cab->sig;
-            (*l).actual = l->actual->sig;
+            l->cab = l->cab->sig;
+            l->actual = l->actual->sig;
         }
     }else{
-        t = (*l).cab;
-        while(t->sig != (*l).actual)
+        t = l->cab;
+        while(t->sig != l->actual)
         {
             t = t->sig;
         }
         t->sig = l->actual->sig;
-        (*l).actual = l->actual->sig;
+        l->actual = l->actual->sig;
     }
     free(aux);
 }
@@ -160,10 +155,10 @@ void lBorrarFin(tLista* l)
 {
     Nodo* aux;
     Nodo* h;
-    aux = (*l).cab;
-    if ((*l).cab == NULL)
+    aux = l->cab;
+    if (l->cab->sig == NULL)
     {
-        (*l).cab = NULL;
+        l->cab = NULL;
         free(aux);
     }else{
         while(aux->sig->sig != NULL)
@@ -179,13 +174,13 @@ void lBorrarFin(tLista* l)
 
 
 
-void lBuscarOrdenado(tLista* l, int x, int existe)
+void lBuscarOrdenado(tLista* l, tDatos x, int existe)
 {
     Nodo* aux;
     existe = 0;
     if(l->cab != NULL)
     {
-        if(l->cab->info->clave = x)
+        if(l->cab->info->clave == x.clave)
         {
             existe = 1;
             l->actual = l->cab;
@@ -199,17 +194,17 @@ void lBuscarOrdenado(tLista* l, int x, int existe)
             {
                 if(l->cab->info->clave < aux->info->clave)
                 {
-                    while((aux != NULL) && (aux->info->clave < x))
+                    while((aux != NULL) && (aux->info->clave < x.clave))
                     {
                         aux = aux->sig;
                     }
                 } else {
-                    while (aux != NULL && aux->info->clave > x)
+                    while (aux != NULL && aux->info->clave > x.clave)
                     {
                         aux = aux->sig;
                     }
                 }
-                if((aux != NULL) && (aux->info->clave = x))
+                if((aux != NULL) && (aux->info->clave = x.clave))
                 {
                     existe = 1;
                     l->actual = aux;

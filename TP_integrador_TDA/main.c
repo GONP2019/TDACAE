@@ -138,17 +138,15 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                }
 
         }
+    }
         tLista *aux ;
         aux = &I;
         while (aux->cab != NULL)
         {
-            printf("El numero impar es: %i",&aux->cab->info->clave);
+            printf("El numero impar es: %i \n",&aux->cab->info->clave);
             aux->cab = aux->cab->sig;
 
         }
-
-
-    }
 
 }
 
