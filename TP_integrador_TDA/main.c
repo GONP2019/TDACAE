@@ -161,13 +161,15 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                 if(!lLlena(&I))
                {
                    datlis.clave = dato;
+                   printf("El dato ingresado en la clave datlis es: %i \n",datlis.clave);
                    lInsertarOrden(&I,&datlis,'D');
                } else {
                     error = 1;
                }
 
         }
-        if(esprimo(dato) == 1)
+
+/*        if(esprimo(dato) == 1)
         {
             if(!lLlena(&PM))
             {
@@ -177,15 +179,17 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
             } else {
                 error = 1;
             }
-        }
+        }*/
 
     }
+        printf("--------------------------- \n");
+        printf("--------------------------- \n");
         printf("Comienzo de la impresion \n");
         tLista *aux ;
-        aux = &PM;
+        aux = &I;
         while (aux->cab != NULL)
         {
-            printf("El numero primo es: %i \n",aux->cab->info->clave);
+            printf("El numero Impar es: %i \n",aux->cab->info->clave);
             aux->cab = aux->cab->sig;
 
         }
