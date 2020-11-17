@@ -67,7 +67,7 @@ void cSacar (tCola* k, tDato* dato)
     {
         k->frente = k->frente + 1;
     }
-     &dato  = k->arrCC[k->frente];
+     dato  = k->arrCC[k->frente];
 
 }
 
