@@ -5,15 +5,17 @@
 
 #endif // LIB_TDA_LISTA_DIN_DE_CIR_H_INCLUDED
 
-typedef struct tDatoss
+typedef int tClave;
+
+typedef struct tDatos
 {
     int clave;
-}tDatoss;
+}tDatos;
 
 
 typedef struct Nodo
 {
-    tDatoss* info;
+    tDatos* info;
     struct Nodo* sig;
     struct Nodo* ant;
 }Nodo;
@@ -63,7 +65,7 @@ void lModificar(tLista* l, tDatos x)
 
 void lSig(tLista* l)
 {
-    l->actual = l->actual>sig;
+    l->actual = l->actual->sig;
 }
 
 void lInsertarPpio(tLista* l, tDatos* x)
@@ -213,7 +215,7 @@ void lBorrarFin(tLista* l)
     free(aux);
 }
 
-void lBuscarOrdenado(tLista* l, tDatos x, int existe)
+void lBuscarOrdenado(tLista* l, tClave x, int existe)
 {
     Nodo* pr;
     Nodo* ult;

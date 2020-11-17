@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
 #include "LIB_TDA_PILA_EST_COR.h"
-#include "LIB_TDA_LISTA_DIN_SE.h"
+/*#include "LIB_TDA_LISTA_DIN_SE.h"*/
 /*#include "LIB_TDA_PILA_LSE.h"*/
-/*#include "LIB_TDA_LISTA_DIN_DE_CIR.h"*/
+#include "LIB_TDA_LISTA_DIN_DE_CIR.h"
 
 /*//////////////////////////////////////*/
 /* Inicializo el array de tCola en ceros*/
@@ -141,7 +141,70 @@ int esprimo (tDato dato)
     }
 }
 
+void procesar(tCola* k,tPila* p,tLista* I,tLista* PM,int* error)
+{
+    tDato dato;
+    tDatos datlis;
+    tDatos datlis2;
+    error = 0;
+    while(cVacia(&k)!=1 && error != 1)
+    {
+        cSacar(&k,&dato);
+        if(dato % 2 == 0)
+        {
+            if(!pLlena(&p))
+            {
+                pPoner(&p,dato);
+            } else {
+                error = 1;
+            }
+        }else{
+                if(!lLlena(&I))
+               {
+                   datlis.clave = dato;
+                   lInsertarOrden(&I,&datlis,'D');
+               } else {
+                    error = 1;
+               }
 
+        }
+        if(esprimo(dato) == 1)
+        {
+            if(!lLlena(&PM))
+            {
+                datlis2.clave = dato;
+                lInsertarOrden(&PM,&datlis2,'A');
+
+            } else {
+                error = 1;
+            }
+        }
+
+    }
+        printf("Comienzo de la impresion \n");
+        RecorrerLista(&I);
+        RecorrerLista(&PM);
+}
+
+void RecorrerLista(tLista* I){
+
+tDatos x;
+if(lVacia(&I) != 1){
+    lPpio(&I);
+    lInfo(&I, &x);
+    printf(x.clave);
+    lSig(&I);
+    while(lFin(&I) != 1) {
+        lInfo(&I, &x);
+        printf(x.clave);
+        lSig(&I);
+    }
+}
+
+}
+
+
+/*
 void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 {
     tDatos datlis;
@@ -193,7 +256,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 
 }
 
-
+*/
 
 
 
