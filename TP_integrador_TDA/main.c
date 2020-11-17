@@ -15,7 +15,7 @@ void inicol (tCola* k)
         k->arrCC[h] = 0;
     }
 }
-
+//h
 /*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
 void RevFinDat (char* rt)
