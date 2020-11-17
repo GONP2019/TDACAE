@@ -6,7 +6,7 @@
 /*#include "LIB_TDA_PILA_LSE.h"*/
 
 /*//////////////////////////////////////*/
-/* Inicializa el array de tCola en ceros*/
+/* Inicializo el array de tCola en ceros*/
 void inicol (tCola* k)
 {
     for(int h=0;h<=MAX;h++)
@@ -43,7 +43,8 @@ void ingnum (tDato *dato)
     *dato = &num;
 
 }
-
+/*//////////////////////////////////////*/
+/* Recorro  la pila y muestro sus valores por pantalla*/
 void MostrarPil(tPila* p)
 {
     int x;
@@ -53,6 +54,8 @@ void MostrarPil(tPila* p)
     }
 }
 
+/*//////////////////////////////////////*/
+/* Inicializo la pila */
 void inipil(tPila* p)
 {
     for(int f=-1;f<=MAX-1;f++)
@@ -61,6 +64,30 @@ void inipil(tPila* p)
     }
 }
 
+/*//////////////////////////////////////*/
+/* Función si es primo o no*/
+
+int esprimo (tDato dato)
+{
+    int rest;
+    int cantdiv = 0;
+    int numdiv = 1;
+    while (numdiv <= dato)
+    {
+        if (dato % numdiv == 0)
+        {
+            cantdiv += 1;
+        }
+        numdiv += 1;
+    }
+    if (cantdiv == 2)
+    {
+        return 1;
+    }else
+    {
+        return 0;
+    }
+}
 
 /*//////////////////////////////////////*/
 /* Código principal*/
@@ -116,7 +143,8 @@ void inipil(tPila* p)
 
 void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 {
-
+    tDatos datlis;
+    tDatos datlis2;
     error = 0;
     while(cVacia(&k)!=1 && error != 1)
     {
@@ -132,18 +160,32 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
         }else{
                 if(!lLlena(&I))
                {
-                   lInsertarOrden(&I,dato,'D');
+                   datlis.clave = dato;
+                   lInsertarOrden(&I,&datlis,'D');
                } else {
                     error = 1;
                }
 
         }
+        if(esprimo(dato) == 1)
+        {
+            if(!lLlena(&PM))
+            {
+                datlis2.clave = dato;
+                lInsertarOrden(&PM,&datlis2,'A');
+
+            } else {
+                error = 1;
+            }
+        }
+
     }
+        printf("Comienzo de la impresion \n");
         tLista *aux ;
-        aux = &I;
+        aux = &PM;
         while (aux->cab != NULL)
         {
-            printf("El numero impar es: %i \n",&aux->cab->info->clave);
+            printf("El numero primo es: %i \n",aux->cab->info->clave);
             aux->cab = aux->cab->sig;
 
         }
