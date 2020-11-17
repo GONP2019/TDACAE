@@ -131,7 +131,15 @@ int esprimo (tDato dato)
        printf("Comienzo del proceso. \n");
        procesar(&k,&p,&I,&PM,&error,&dato);
            if (error != 1){
-                MostrarPil(&p);
+                if(pVacia(&p)!= 1){  //Pregunto si no estan vacías antes de mostrar su contenido
+                    MostrarPil(&p);
+                }
+                if(lVacia(&I) != 1){
+                    RecorrerLista(&I);
+                }
+                if(lVacia(&PM) != 1){
+                    RecorrerLista(&PM);
+                }
                 /*MostrarLisp ();
                 MostrarLisi ();*/
           }else{
@@ -181,9 +189,6 @@ void procesar(tCola* k,tPila* p,tLista* I,tLista* PM,int* error)
         }
 
     }
-        printf("Comienzo de la impresion \n");
-        RecorrerLista(&I);
-        RecorrerLista(&PM);
 }
 
 void RecorrerLista(tLista* I){
@@ -256,9 +261,9 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 
 }
 
+
+
 */
-
-
 
 
 
