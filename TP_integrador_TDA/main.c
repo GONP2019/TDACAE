@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
 #include "LIB_TDA_PILA_EST_COR.h"
-#include "LIB_TDA_LISTA_DIN_SE.h"
+//#include "LIB_TDA_LISTA_DIN_SE.h"
 /*#include "LIB_TDA_PILA_LSE.h"*/
-/*#include "LIB_TDA_LISTA_DIN_DE_CIR.h"*/
+#include "LIB_TDA_LISTA_DIN_DE_CIR.h"
 
 /*//////////////////////////////////////*/
 /* Inicializo el array de tCola en ceros*/
