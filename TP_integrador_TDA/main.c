@@ -149,7 +149,7 @@ int esprimo (tDato dato)
     }
 }
 
-void procesar(tCola* k,tPila* p,tLista* I,tLista* PM,int* error)
+/*void procesar(tCola* k,tPila* p,tLista* I,tLista* PM,int* error)
 {
     tDato dato;
     tDatos datlis;
@@ -190,7 +190,7 @@ void procesar(tCola* k,tPila* p,tLista* I,tLista* PM,int* error)
 
     }
 }
-
+*/
 void RecorrerLista(tLista* I){
 
 tDatos x;
@@ -209,7 +209,7 @@ if(lVacia(&I) != 1){
 }
 
 
-/*
+
 void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 {
     tDatos datlis;
@@ -263,7 +263,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 
 
 
-*/
+
 
 
 
