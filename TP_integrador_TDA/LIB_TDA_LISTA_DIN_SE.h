@@ -109,7 +109,7 @@ void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
             {
                 aux = aux->sig;
             }
-           /* nuevo->sig = aux->sig;*/
+            nuevo->sig = aux->sig;
             aux->sig = nuevo;
         }
 
