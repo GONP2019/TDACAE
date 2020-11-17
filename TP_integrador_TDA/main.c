@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include "LIB_TDA_COLA_EST_CIR.h"
 #include "LIB_TDA_PILA_EST_COR.h"
-#include "LIB_TDA_LISTA_DIN_SE.h"
+//#include "LIB_TDA_LISTA_DIN_SE.h"
 /*#include "LIB_TDA_PILA_LSE.h"*/
+<<<<<<< HEAD
+=======
+#include "LIB_TDA_LISTA_DIN_DE_CIR.h"
+>>>>>>> 92959e2e0392c2cd5c2e06fdb17659218a14da34
 
 /*//////////////////////////////////////*/
 /* Inicializo el array de tCola en ceros*/
@@ -14,7 +18,7 @@ void inicol (tCola* k)
         k->arrCC[h] = 0;
     }
 }
-
+//h
 /*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
 void RevFinDat (char* rt)
