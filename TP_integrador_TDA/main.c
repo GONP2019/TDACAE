@@ -16,7 +16,7 @@ void inicol (tCola* k)
         k->arrCC[h] = 0;
     }
 }
-//h
+
 /*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
 void RevFinDat (char* rt)
@@ -56,11 +56,29 @@ void MostrarPil(tPila* p)
     }
 }
 
+void MostrarLisp (tLista* I)
+{
+    tDatos datP;
+    if (!lVacia(&I))
+    {
+        lPpio(&I);
+        lInfo(&I,&datP);
+        printf("El número impar es:%i",datP);
+        lSig(&I);
+        while(!lFin(&I))
+        {
+            lInfo(&I,&datP);
+            printf("El número impar es:%i",datP);
+            lSig(&I);
+        }
+    }
+}
+
 /*//////////////////////////////////////*/
 /* Inicializo la pila */
 void inipil(tPila* p)
 {
-    for(int f=-1;f<=MAX-1;f++)
+    for(int f=0;f<=MAX-1;f++)
     {
       p->elem[f] = 0;
     }
@@ -133,8 +151,9 @@ int esprimo (tDato dato)
        procesar(&k,&p,&I,&PM,&error,&dato);
            if (error != 1){
                 MostrarPil(&p);
-                /*MostrarLisp ();
-                MostrarLisi ();*/
+                MostrarLisp(&I);
+                /*MostrarLisi ();*/
+                printf("Finalizado");
           }else{
                 printf("No ha sido posible continuar con el proceso.\n");
                 printf("Finalizando sistema....\n");
@@ -171,7 +190,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 
         }
 
-/*        if(esprimo(dato) == 1)
+        if(esprimo(dato) == 1)
         {
             if(!lLlena(&PM))
             {
@@ -181,65 +200,12 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
             } else {
                 error = 1;
             }
-        }*/
+        }
 
     }
-        printf("--------------------------- \n");
-        printf("--------------------------- \n");
-        printf("Comienzo de la impresion \n");
-        tLista *aux ;
-        aux = &I;
-        while (aux->cab != NULL)
-        {
-            printf("El numero Impar es: %i \n",aux->cab->info->clave);
-            aux->cab = aux->cab->sig;
-
-        }
 
 }
 
 
 
-
-
-
-
-
-
-
-/*void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
-{
-    tDato num;
-    _Bool primo;
-    while(!cVacia(&q) && !error)
-    {
-        cSacar(&q, &num)
-        if(num.clave % 2 = 0)
-        {
-            if(!pLlena(&p))
-            {
-                pPoner(&num, &num)
-            } else {
-                error = 1;
-            }
-        } else {
-            if(!lLlena(&lImpares)
-               {
-                   lInsertarOrdenado(&lImpares, num, 'D');
-               } else {
-                    error = 1;
-               }
-        }
-        primo = esPrimo(num);
-        if(primo)
-        {
-            if(!lLlena(&lPrimos))
-            {
-                lInsertarOrdenado(&lPrimos, num, 'A'));
-            } else {
-                error = 1;
-            }
-        }
-    }
-}*/
 

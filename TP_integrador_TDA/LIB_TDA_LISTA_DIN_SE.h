@@ -47,7 +47,7 @@ void lPpio(tLista* l)
 
 void lInfo(tLista* l, tDatos* x)
 {
-    x->clave = l->actual->info;
+    x = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
@@ -94,17 +94,10 @@ void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
     nuevo = malloc(sizeof(Nodo));
     nuevo->info = datlist;
     nuevo->sig = NULL;
-    printf("----------------------\n");
-    printf("Antes de continuar se mostrar los datos del nuevo nodo \n");
-    printf("El dato del campo .info es:%i \n",nuevo->info->clave);
-    printf("El dato del campo .sig es:%s \n",nuevo->sig);
-    printf("----------------------\n");
+
     if(l->cab == NULL)
     {
         l->cab = nuevo;
-        printf("----------------------\n");
-        printf("El dato de la cabecera .info es:%i \n",l->cab->info->clave);
-        printf("----------------------\n");
     } else {
         if(((datlist->clave > l->cab->info->clave)&& (orden == 'D'))|| ((datlist->clave < l->cab->info->clave)&& (orden == 'A')))
         {
@@ -112,7 +105,6 @@ void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
             l->cab = nuevo;
         } else {
             aux = l->cab;
-            printf("El dato de la cabecera despues de primer elemento es: %i\n",aux->info->clave);
             while((aux->sig != NULL) && (((datlist->clave > aux->sig->info->clave) && (orden == 'A')) || ((datlist->clave < aux->sig->info->clave) && (orden == 'D'))))
             {
                 aux = aux->sig;
