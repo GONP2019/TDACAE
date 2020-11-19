@@ -91,7 +91,7 @@ void lInsertarFin(tLista* l, tDatos x)
 Nodo* CrearNodo (Nodo* nuevo, tDatos datlist)
 {
     nuevo = (Nodo*) malloc(sizeof(Nodo));
-    nuevo->info->clave = datlist.clave;
+    nuevo->info = datlist.clave;
     nuevo->sig = NULL;
     return nuevo;
 }
