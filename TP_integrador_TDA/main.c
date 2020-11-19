@@ -4,7 +4,7 @@
 #include "LIB_TDA_PILA_EST_COR.h"
 #include "LIB_TDA_LISTA_DIN_SE.h"
 /*#include "LIB_TDA_PILA_LSE.h"*/
-//#include "LIB_TDA_LISTA_DIN_DE_CIR.h"
+/*#include "LIB_TDA_LISTA_DIN_DE_CIR.h"*/
 
 
 /*//////////////////////////////////////*/
@@ -50,7 +50,7 @@ void ingnum (tDato *dato)
 void MostrarPil(tPila* p)
 {
     int x;
-    if (pVacia(&p)){
+    if (!pVacia(&p)){
         printf("------------------\n");
         printf("Comienzo de impresi%cn pila de pares \n",162);
 
@@ -71,12 +71,12 @@ void MostrarLisp (tLista* I)
         printf("Comienzo de impresi%cn lista impares \n",162);
         lPpio(&I);
         lInfo(&I,&x);
-        printf("El número impar es:%i",x);
+        printf("El n%cmero impar es:%i",163,x.clave);
         lSig(&I);
         while(!lFin(&I))
         {
             lInfo(&I,&x);
-            printf("El número impar es:%i",x);
+            printf("El n%cmero impar es:%i",163,x.clave);
             lSig(&I);
         }
     }
@@ -213,7 +213,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                 if(!lLlena(&I))
                {
                    datlis.clave = dato;
-                   lInsertarOrden(&I,&datlis,'D');
+                   lInsertarOrden(&I,datlis,'D');
                } else {
                     error = 1;
                }
@@ -225,7 +225,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
             if(!lLlena(&PM))
             {
                 datlis.clave = dato;
-                lInsertarOrden(&PM,&datlis,'A');
+                lInsertarOrden(&PM,datlis,'A');
 
             } else {
                 error = 1;

@@ -88,34 +88,31 @@ void lInsertarFin(tLista* l, tDatos x)
     }
 }
 
-Nodo* CrearNodo (Nodo* nuevo, tDatos* datlist)
+Nodo* CrearNodo (Nodo* nuevo, tDatos datlist)
 {
     nuevo = (Nodo*) malloc(sizeof(Nodo));
-    nuevo->info = datlist;
+    nuevo->info->clave = datlist.clave;
     nuevo->sig = NULL;
     return nuevo;
 }
 
-void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
+void lInsertarOrden(tLista* l, tDatos datlist, char orden)
 {
     Nodo *aux;
     Nodo *nuevo;
-    CrearNodo(&nuevo,&datlist);
-    /*nuevo = (Nodo*) malloc(sizeof(Nodo));
-    nuevo->info = datlist;
-    nuevo->sig = NULL;*/
+    CrearNodo(&nuevo,datlist);
 
     if(l->cab == NULL)
     {
         l->cab = nuevo;
     } else {
-        if(((datlist->clave > l->cab->info->clave)&& (orden == 'D'))|| ((datlist->clave < l->cab->info->clave)&& (orden == 'A')))
+        if(((datlist.clave > l->cab->info->clave)&& (orden == 'D'))|| ((datlist.clave < l->cab->info->clave)&& (orden == 'A')))
         {
             nuevo->sig = l->cab;
             l->cab = nuevo;
         } else {
             aux = l->cab;
-            while((aux->sig != NULL) && (((datlist->clave > aux->sig->info->clave) && (orden == 'A')) || ((datlist->clave < aux->sig->info->clave) && (orden == 'D'))))
+            while((aux->sig != NULL) && (((datlist.clave > aux->sig->info->clave) && (orden == 'A')) || ((datlist.clave < aux->sig->info->clave) && (orden == 'D'))))
             {
                 aux = aux->sig;
             }
