@@ -50,29 +50,59 @@ void ingnum (tDato *dato)
 void MostrarPil(tPila* p)
 {
     int x;
-    for (int f=0;f<=p->cima;f++)
-    {
-        printf("Elemento de la pila: %i \n",p->elem[f]);
+    if (pVacia(&p)){
+        printf("------------------\n");
+        printf("Comienzo de impresi%cn pila de pares \n",162);
+
+        for (int f=0;f<=p->cima;f++)
+        {
+            printf("El n%cmero de la pila par es: %i \n",163,p->elem[f]);
+        }
     }
 }
 
 void MostrarLisp (tLista* I)
 {
-    tDatos datP;
+    tDatos x;
+
     if (!lVacia(&I))
     {
+        printf("------------------\n");
+        printf("Comienzo de impresi%cn lista impares \n",162);
         lPpio(&I);
-        lInfo(&I,&datP);
-        printf("El número impar es:%i",datP);
+        lInfo(&I,&x);
+        printf("El número impar es:%i",x);
         lSig(&I);
         while(!lFin(&I))
         {
-            lInfo(&I,&datP);
-            printf("El número impar es:%i",datP);
+            lInfo(&I,&x);
+            printf("El número impar es:%i",x);
             lSig(&I);
         }
     }
 }
+
+void MostrarLisprimo (tLista* PM)
+{
+    tDatos datPRIM;
+    printf("------------------\n");
+    printf("Comienzo de impresi%cn lista primos \n",162);
+    if (!lVacia(&PM))
+    {
+        lPpio(&PM);
+        lInfo(&PM,&datPRIM);
+        printf("El número primo es:%i",datPRIM);
+        lSig(&PM);
+        while(!lFin(&PM))
+        {
+            lInfo(&PM,&datPRIM);
+            printf("El número primo es:%i",datPRIM);
+            lSig(&PM);
+        }
+    }
+}
+
+
 
 /*//////////////////////////////////////*/
 /* Inicializo la pila */
@@ -148,11 +178,11 @@ int esprimo (tDato dato)
     }else
     {
        printf("Comienzo del proceso. \n");
-       procesar(&k,&p,&I,&PM,&error,&dato);
+       procesar(&k,&p,&I,&PM,&error);
            if (error != 1){
                 MostrarPil(&p);
                 MostrarLisp(&I);
-                /*MostrarLisi ();*/
+                MostrarLisprimo (&PM);
                 printf("Finalizado");
           }else{
                 printf("No ha sido posible continuar con el proceso.\n");
@@ -164,6 +194,7 @@ int esprimo (tDato dato)
 
 void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 {
+
     tDatos datlis;
     tDatos datlis2;
     error = 0;
@@ -182,7 +213,6 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                 if(!lLlena(&I))
                {
                    datlis.clave = dato;
-                   printf("El dato ingresado en la clave datlis es: %i \n",datlis.clave);
                    lInsertarOrden(&I,&datlis,'D');
                } else {
                     error = 1;
@@ -194,8 +224,8 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
         {
             if(!lLlena(&PM))
             {
-                datlis2.clave = dato;
-                lInsertarOrden(&PM,&datlis2,'A');
+                datlis.clave = dato;
+                lInsertarOrden(&PM,&datlis,'A');
 
             } else {
                 error = 1;

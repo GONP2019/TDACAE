@@ -47,7 +47,8 @@ void lPpio(tLista* l)
 
 void lInfo(tLista* l, tDatos* x)
 {
-    x = l->actual->info;
+
+   x = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
@@ -87,13 +88,22 @@ void lInsertarFin(tLista* l, tDatos x)
     }
 }
 
+Nodo* CrearNodo (Nodo* nuevo, tDatos* datlist)
+{
+    nuevo = (Nodo*) malloc(sizeof(Nodo));
+    nuevo->info = datlist;
+    nuevo->sig = NULL;
+    return nuevo;
+}
+
 void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
 {
     Nodo *aux;
     Nodo *nuevo;
-    nuevo = malloc(sizeof(Nodo));
+    CrearNodo(&nuevo,&datlist);
+    /*nuevo = (Nodo*) malloc(sizeof(Nodo));
     nuevo->info = datlist;
-    nuevo->sig = NULL;
+    nuevo->sig = NULL;*/
 
     if(l->cab == NULL)
     {
