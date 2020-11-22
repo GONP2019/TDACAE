@@ -4,7 +4,7 @@
 #include "LIB_TDA_PILA_EST_COR.h"
 #include "LIB_TDA_LISTA_DIN_SE.h"
 /*#include "LIB_TDA_PILA_LSE.h"*/
-/*#include "LIB_TDA_LISTA_DIN_DE_CIR.h"*/
+//#include "LIB_TDA_LISTA_DIN_DE_CIR.h"
 
 
 /*//////////////////////////////////////*/
@@ -16,7 +16,7 @@ void inicol (tCola* k)
         k->arrCC[h] = 0;
     }
 }
-
+//h
 /*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
 void RevFinDat (char* rt)
@@ -50,65 +50,17 @@ void ingnum (tDato *dato)
 void MostrarPil(tPila* p)
 {
     int x;
-    if (!pVacia(&p)){
-        printf("------------------\n");
-        printf("Comienzo de impresi%cn pila de pares \n",162);
-
-        for (int f=0;f<=p->cima;f++)
-        {
-            printf("El n%cmero de la pila par es: %i \n",163,p->elem[f]);
-        }
-    }
-}
-
-void MostrarLisp (tLista* I)
-{
-    tDatos x;
-
-    if (!lVacia(&I))
+    for (int f=0;f<=p->cima;f++)
     {
-        printf("------------------\n");
-        printf("Comienzo de impresi%cn lista impares \n",162);
-        lPpio(&I);
-        lInfo(&I,&x);
-        printf("El n%cmero impar es:%i",163,x.clave);
-        lSig(&I);
-        while(!lFin(&I))
-        {
-            lInfo(&I,&x);
-            printf("El n%cmero impar es:%i",163,x.clave);
-            lSig(&I);
-        }
+        printf("Elemento de la pila: %i \n",p->elem[f]);
     }
 }
-
-void MostrarLisprimo (tLista* PM)
-{
-    tDatos datPRIM;
-    printf("------------------\n");
-    printf("Comienzo de impresi%cn lista primos \n",162);
-    if (!lVacia(&PM))
-    {
-        lPpio(&PM);
-        lInfo(&PM,&datPRIM);
-        printf("El número primo es:%i",datPRIM);
-        lSig(&PM);
-        while(!lFin(&PM))
-        {
-            lInfo(&PM,&datPRIM);
-            printf("El número primo es:%i",datPRIM);
-            lSig(&PM);
-        }
-    }
-}
-
-
 
 /*//////////////////////////////////////*/
 /* Inicializo la pila */
 void inipil(tPila* p)
 {
-    for(int f=0;f<=MAX-1;f++)
+    for(int f=-1;f<=MAX-1;f++)
     {
       p->elem[f] = 0;
     }
@@ -178,12 +130,11 @@ int esprimo (tDato dato)
     }else
     {
        printf("Comienzo del proceso. \n");
-       procesar(&k,&p,&I,&PM,&error);
+       procesar(&k,&p,&I,&PM,&error,&dato);
            if (error != 1){
                 MostrarPil(&p);
-                MostrarLisp(&I);
-                MostrarLisprimo (&PM);
-                printf("Finalizado");
+                /*MostrarLisp ();
+                MostrarLisi ();*/
           }else{
                 printf("No ha sido posible continuar con el proceso.\n");
                 printf("Finalizando sistema....\n");
@@ -194,7 +145,6 @@ int esprimo (tDato dato)
 
 void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
 {
-
     tDatos datlis;
     tDatos datlis2;
     error = 0;
@@ -213,29 +163,83 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                 if(!lLlena(&I))
                {
                    datlis.clave = dato;
-                   lInsertarOrden(&I,datlis,'D');
+                   printf("El dato ingresado en la clave datlis es: %i \n",datlis.clave);
+                   lInsertarOrden(&I,&datlis,'D');
                } else {
                     error = 1;
                }
 
         }
 
-        if(esprimo(dato) == 1)
+/*        if(esprimo(dato) == 1)
         {
             if(!lLlena(&PM))
             {
-                datlis.clave = dato;
-                lInsertarOrden(&PM,datlis,'A');
+                datlis2.clave = dato;
+                lInsertarOrden(&PM,&datlis2,'A');
 
             } else {
                 error = 1;
             }
-        }
+        }*/
 
     }
+        printf("--------------------------- \n");
+        printf("--------------------------- \n");
+        printf("Comienzo de la impresion \n");
+        tLista *aux ;
+        aux = &I;
+        while (aux->cab != NULL)
+        {
+            printf("El numero Impar es: %i \n",aux->cab->info->clave);
+            aux->cab = aux->cab->sig;
+
+        }
 
 }
 
 
 
+
+
+
+
+
+
+
+/*void procesar(tLista* lImpares, tLista* lPrimos,tPila* p, tCola* q: tCola, _Bool *error)
+{
+    tDato num;
+    _Bool primo;
+    while(!cVacia(&q) && !error)
+    {
+        cSacar(&q, &num)
+        if(num.clave % 2 = 0)
+        {
+            if(!pLlena(&p))
+            {
+                pPoner(&num, &num)
+            } else {
+                error = 1;
+            }
+        } else {
+            if(!lLlena(&lImpares)
+               {
+                   lInsertarOrdenado(&lImpares, num, 'D');
+               } else {
+                    error = 1;
+               }
+        }
+        primo = esPrimo(num);
+        if(primo)
+        {
+            if(!lLlena(&lPrimos))
+            {
+                lInsertarOrdenado(&lPrimos, num, 'A'));
+            } else {
+                error = 1;
+            }
+        }
+    }
+}*/
 
