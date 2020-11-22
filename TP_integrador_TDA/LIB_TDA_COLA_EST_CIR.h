@@ -16,6 +16,14 @@ void cCrear (tCola* k)
     k->finc = 0;
 }
 
+void inicol (tCola* k)
+{
+    for(int h=0;h<=MAX;h++)
+    {
+        k->arrCC[h] = 0;
+    }
+}
+
 int cLlena (tCola* k)
 {
     /* Si devuelve 1 significa que está llena */

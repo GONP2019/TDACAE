@@ -8,7 +8,6 @@
 
 
 
-/*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
 void RevFinDat (char* rt)
 {
@@ -96,7 +95,6 @@ void MostrarLisprimo (tLista* PM)
     }
 }
 
-/*//////////////////////////////////////*/
 /* Función si es primo o no*/
 
 int esprimo (tDato dato)
