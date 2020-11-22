@@ -50,13 +50,14 @@ void ingnum (tDato *dato)
 void MostrarPil(tPila* p)
 {
     int x;
-    if (!pVacia(&p)){
+    if (!pVacia(p)){
         printf("------------------\n");
         printf("Comienzo de impresi%cn pila de pares \n",162);
 
-        for (int f=0;f<=p->cima;f++)
+        while (!pVacia(p))
         {
-            printf("El n%cmero de la pila par es: %i \n",163,p->elem[f]);
+            pSacar(p,&x);
+            printf("El n%cmero de la pila par es: %i \n",163,x);
         }
     }
 }
@@ -65,19 +66,20 @@ void MostrarLisp (tLista* I)
 {
     tDatos x;
 
-    if (!lVacia(&I))
+    if (lVacia(I))
     {
         printf("------------------\n");
         printf("Comienzo de impresi%cn lista impares \n",162);
-        lPpio(&I);
+        lPpio(I);
+        printf("El dato es: %i \n",x.clave);
         lInfo(&I,&x);
         printf("El n%cmero impar es:%i",163,x.clave);
-        lSig(&I);
-        while(!lFin(&I))
+        lSig(I);
+        while(!lFin(I))
         {
-            lInfo(&I,&x);
+            lInfo(I,&x);
             printf("El n%cmero impar es:%i",163,x.clave);
-            lSig(&I);
+            lSig(I);
         }
     }
 }
@@ -85,19 +87,20 @@ void MostrarLisp (tLista* I)
 void MostrarLisprimo (tLista* PM)
 {
     tDatos datPRIM;
-    printf("------------------\n");
-    printf("Comienzo de impresi%cn lista primos \n",162);
-    if (!lVacia(&PM))
+
+    if (lVacia(PM))
     {
-        lPpio(&PM);
-        lInfo(&PM,&datPRIM);
-        printf("El número primo es:%i",datPRIM);
-        lSig(&PM);
-        while(!lFin(&PM))
+        printf("------------------\n");
+        printf("Comienzo de impresi%cn lista primos \n",162);
+        lPpio(PM);
+        lInfo(PM,&datPRIM);
+        printf("El número primo es:%i \n",datPRIM);
+        lSig(PM);
+        while(!lFin(PM))
         {
-            lInfo(&PM,&datPRIM);
-            printf("El número primo es:%i",datPRIM);
-            lSig(&PM);
+            lInfo(PM,&datPRIM);
+            printf("El n%cmero primo es:%i",163,datPRIM);
+            lSig(PM);
         }
     }
 }
@@ -149,7 +152,7 @@ int esprimo (tDato dato)
     tLista I;
     tLista PM;
     char rt;
-    int error;
+    int error = 0;
     cCrear(&k);
     pCrear(&p);
     lCrear(&I);
@@ -192,12 +195,10 @@ int esprimo (tDato dato)
 }
 
 
-void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
+void procesar(tCola k,tPila p,tLista I,tLista PM,int *error,tDato dato)
 {
 
     tDatos datlis;
-    tDatos datlis2;
-    error = 0;
     while(cVacia(&k)!=1 && error != 1)
     {
         cSacar(&k,&dato);
@@ -207,7 +208,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
             {
                 pPoner(&p,dato);
             } else {
-                error = 1;
+                *error = 1;
             }
         }else{
                 if(!lLlena(&I))
@@ -215,7 +216,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                    datlis.clave = dato;
                    lInsertarOrden(&I,datlis,'D');
                } else {
-                    error = 1;
+                    *error = 1;
                }
 
         }
@@ -228,7 +229,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
                 lInsertarOrden(&PM,datlis,'A');
 
             } else {
-                error = 1;
+                *error = 1;
             }
         }
 
