@@ -21,7 +21,7 @@ void RevFinDat (char* rt)
     }while (rts != 'S' && rts != 'N');
     *rt = rts;
 }
-/*/////////////////////////////////////////////////////////////*/
+
 /* Proceso que valida el ingreso de un numero entero positivo */
 void ingnum (tDato *dato)
 {
@@ -36,7 +36,7 @@ void ingnum (tDato *dato)
     *dato = &num;
 
 }
-/*//////////////////////////////////////*/
+
 /* Recorro  la pila y muestro sus valores por pantalla*/
 void MostrarPil(tPila* p)
 {
@@ -121,7 +121,7 @@ int esprimo (tDato dato)
     }
 }
 
-/*//////////////////////////////////////*/
+
 /* Código principal*/
  main()
 {
@@ -194,7 +194,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int *error,tDato dato)
                 if(!lLlena(&I))
                {
                    datlis.clave = dato;
-                   lInsertarOrden(&I,&datlis,'D');
+                   lInsertarOrden(&I,datlis,'D');
                } else {
                    *error = 1;
                }
@@ -206,7 +206,7 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int *error,tDato dato)
             if(!lLlena(&PM))
             {
                 datlis.clave = dato;
-                lInsertarOrden(&PM,&datlis,'A');
+                lInsertarOrden(&PM,datlis,'A');
 
             } else {
                 *error = 1;

@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="LIB_TDA_COLA_EST_CIR.h" />
+		<Unit filename="LIB_TDA_LISTA_DIN_DE_CIR.h" />
 		<Unit filename="LIB_TDA_LISTA_DIN_SE.h" />
 		<Unit filename="LIB_TDA_PILA_EST_COR.h" />
 		<Unit filename="LIB_TDA_PILA_LSE.h" />
