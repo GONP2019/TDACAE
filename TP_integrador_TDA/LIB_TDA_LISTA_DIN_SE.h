@@ -45,9 +45,10 @@ void lPpio(tLista* l)
     (*l).actual = (*l).cab;
 }
 
-void lInfo(tLista* l, tDatos *x)
+void lInfo(tLista* l, tDatos* x)
 {
-    x = l->actual->info;
+
+   x = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
@@ -67,6 +68,7 @@ void lInsertarPpio(tLista* l, tDatos* x)
     nuevo->info = x;
     nuevo->sig = l->cab;
     l->cab = nuevo;
+    printf("El valor de sig es: %s\n",nuevo->sig);
 }
 
 void lInsertarFin(tLista* l, tDatos x)
