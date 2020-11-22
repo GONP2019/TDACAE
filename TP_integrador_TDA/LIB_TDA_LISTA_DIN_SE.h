@@ -9,7 +9,7 @@ typedef struct tDatos
 
 typedef struct Nodo
 {
-    tDatos* info;
+    tDatos info;
     struct Nodo* sig;
 }Nodo;
 
@@ -47,12 +47,12 @@ void lPpio(tLista* l)
 
 void lInfo(tLista* l, tDatos* x)
 {
-    x->clave = l->actual->info;
+    *x = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
 {
-    l->actual->info = &x;
+    l->actual->info = x;
 }
 
 void lSig(tLista* l)
@@ -64,7 +64,7 @@ void lInsertarPpio(tLista* l, tDatos* x)
 {
     Nodo* nuevo;
     nuevo = (Nodo*)malloc(sizeof(Nodo));
-    nuevo->info = x;
+    nuevo->info = *x;
     nuevo->sig = l->cab;
     l->cab = nuevo;
     printf("El valor de sig es: %s\n",nuevo->sig);
@@ -92,34 +92,25 @@ void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
     Nodo *aux;
     Nodo *nuevo;
     nuevo = malloc(sizeof(Nodo));
-    nuevo->info = datlist;
+    nuevo->info = *datlist;
     nuevo->sig = NULL;
-    printf("----------------------\n");
-    printf("Antes de continuar se mostrar los datos del nuevo nodo \n");
-    printf("El dato del campo .info es:%i \n",nuevo->info->clave);
-    printf("El dato del campo .sig es:%s \n",nuevo->sig);
-    printf("----------------------\n");
+
     if(l->cab == NULL)
     {
         l->cab = nuevo;
-        printf("----------------------\n");
-        printf("El dato de la cabecera .info es:%i \n",l->cab->info->clave);
-        printf("----------------------\n");
     } else {
-        if(((datlist->clave > l->cab->info->clave)&& (orden == 'D'))|| ((datlist->clave < l->cab->info->clave)&& (orden == 'A')))
+        if(((datlist->clave > l->cab->info.clave)&& (orden == 'D'))|| ((datlist->clave < l->cab->info.clave)&& (orden == 'A')))
         {
             nuevo->sig = l->cab;
             l->cab = nuevo;
         } else {
             aux = l->cab;
-            printf("El dato de la cabecera despues de primer elemento es: %i\n",aux->info->clave);
-            while((aux->sig != NULL) && (((datlist->clave > aux->sig->info->clave) && (orden == 'A')) || ((datlist->clave < aux->sig->info->clave) && (orden == 'D'))))
+            while((aux->sig != NULL) && (((datlist->clave > aux->sig->info.clave) && (orden == 'A')) || ((datlist->clave < aux->sig->info.clave) && (orden == 'D'))))
             {
                 aux = aux->sig;
             }
             nuevo->sig = aux->sig;
             aux->sig = nuevo;
-
         }
 
     }
@@ -189,31 +180,31 @@ void lBuscarOrdenado(tLista* l, tDatos x, int existe)
     existe = 0;
     if(l->cab != NULL)
     {
-        if(l->cab->info->clave == x.clave)
+        if(l->cab->info.clave == x.clave)
         {
             existe = 1;
             l->actual = l->cab;
         }else{
             aux = l->cab;
-            while((aux != NULL) && (l->cab->info->clave == aux->info->clave))
+            while((aux != NULL) && (l->cab->info.clave == aux->info.clave))
             {
                 aux = aux->sig;
             }
             if(aux != NULL)
             {
-                if(l->cab->info->clave < aux->info->clave)
+                if(l->cab->info.clave < aux->info.clave)
                 {
-                    while((aux != NULL) && (aux->info->clave < x.clave))
+                    while((aux != NULL) && (aux->info.clave < x.clave))
                     {
                         aux = aux->sig;
                     }
                 } else {
-                    while (aux != NULL && aux->info->clave > x.clave)
+                    while (aux != NULL && aux->info.clave > x.clave)
                     {
                         aux = aux->sig;
                     }
                 }
-                if((aux != NULL) && (aux->info->clave = x.clave))
+                if((aux != NULL) && (aux->info.clave = x.clave))
                 {
                     existe = 1;
                     l->actual = aux;
