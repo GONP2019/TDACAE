@@ -7,15 +7,6 @@
 /*#include "LIB_TDA_LISTA_DIN_DE_CIR.h"*/
 
 
-/*//////////////////////////////////////*/
-/* Inicializo el array de tCola en ceros*/
-void inicol (tCola* k)
-{
-    for(int h=0;h<=MAX;h++)
-    {
-        k->arrCC[h] = 0;
-    }
-}
 
 /*////////////////////////////////////////////////*/
 /* Funcion pregunta si hay mas datos que ingresar*/
@@ -49,14 +40,15 @@ void ingnum (tDato *dato)
 /* Recorro  la pila y muestro sus valores por pantalla*/
 void MostrarPil(tPila* p)
 {
-    int x;
-    if (!pVacia(&p)){
+    int x = 0;
+    if (!pVacia(p)){
         printf("------------------\n");
         printf("Comienzo de impresi%cn pila de pares \n",162);
-
-        for (int f=0;f<=p->cima;f++)
+        while (!pVacia(p))
         {
-            printf("El n%cmero de la pila par es: %i \n",163,p->elem[f]);
+            pSacar(p,&x);
+            printf("El n%cmero de la pila par es: %i \n",163,x);
+
         }
     }
 }
@@ -64,20 +56,22 @@ void MostrarPil(tPila* p)
 void MostrarLisp (tLista* I)
 {
     tDatos x;
-
-    if (!lVacia(&I))
+    lPpio(I);
+    lInfo(I,&x);
+    printf("La cabecera tiene datos: %i \n",x.clave);
+    if (!lVacia(I))
     {
         printf("------------------\n");
         printf("Comienzo de impresi%cn lista impares \n",162);
-        lPpio(&I);
-        lInfo(&I,&x);
+        lPpio(I);
+        lInfo(I,&x);
         printf("El n%cmero impar es:%i",163,x.clave);
-        lSig(&I);
-        while(!lFin(&I))
+        lSig(I);
+        while(!lFin(I))
         {
-            lInfo(&I,&x);
+            lInfo(I,&x);
             printf("El n%cmero impar es:%i",163,x.clave);
-            lSig(&I);
+            lSig(I);
         }
     }
 }
@@ -85,32 +79,20 @@ void MostrarLisp (tLista* I)
 void MostrarLisprimo (tLista* PM)
 {
     tDatos datPRIM;
-    printf("------------------\n");
-    printf("Comienzo de impresi%cn lista primos \n",162);
-    if (!lVacia(&PM))
+    if (!lVacia(PM))
     {
-        lPpio(&PM);
-        lInfo(&PM,&datPRIM);
+        printf("------------------\n");
+        printf("Comienzo de impresi%cn lista primos \n",162);
+        lPpio(PM);
+        lInfo(PM,&datPRIM);
         printf("El número primo es:%i",datPRIM);
-        lSig(&PM);
-        while(!lFin(&PM))
+        lSig(PM);
+        while(!lFin(PM))
         {
-            lInfo(&PM,&datPRIM);
+            lInfo(PM,&datPRIM);
             printf("El número primo es:%i",datPRIM);
-            lSig(&PM);
+            lSig(PM);
         }
-    }
-}
-
-
-
-/*//////////////////////////////////////*/
-/* Inicializo la pila */
-void inipil(tPila* p)
-{
-    for(int f=0;f<=MAX-1;f++)
-    {
-      p->elem[f] = 0;
     }
 }
 
@@ -149,7 +131,7 @@ int esprimo (tDato dato)
     tLista I;
     tLista PM;
     char rt;
-    int error;
+    int error = 0;
     cCrear(&k);
     pCrear(&p);
     lCrear(&I);
@@ -192,12 +174,11 @@ int esprimo (tDato dato)
 }
 
 
-void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
+void procesar(tCola k,tPila p,tLista I,tLista PM,int *error,tDato dato)
 {
 
     tDatos datlis;
-    tDatos datlis2;
-    error = 0;
+
     while(cVacia(&k)!=1 && error != 1)
     {
         cSacar(&k,&dato);
@@ -207,15 +188,15 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
             {
                 pPoner(&p,dato);
             } else {
-                error = 1;
+                *error = 1;
             }
         }else{
                 if(!lLlena(&I))
                {
                    datlis.clave = dato;
-                   lInsertarOrden(&I,datlis,'D');
+                   lInsertarOrden(&I,&datlis,'D');
                } else {
-                    error = 1;
+                   *error = 1;
                }
 
         }
@@ -225,10 +206,10 @@ void procesar(tCola k,tPila p,tLista I,tLista PM,int error,tDato dato)
             if(!lLlena(&PM))
             {
                 datlis.clave = dato;
-                lInsertarOrden(&PM,datlis,'A');
+                lInsertarOrden(&PM,&datlis,'A');
 
             } else {
-                error = 1;
+                *error = 1;
             }
         }
 
