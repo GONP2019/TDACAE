@@ -45,7 +45,7 @@ void lPpio(tLista* l)
     (*l).actual = (*l).cab;
 }
 
-void lInfo(tLista* l, tDatos *x)
+void lInfo(tLista* l, tDatos* x)
 {
     *x = l->actual->info;
 }
@@ -67,7 +67,7 @@ void lInsertarPpio(tLista* l, tDatos* x)
     nuevo->info = *x;
     nuevo->sig = l->cab;
     l->cab = nuevo;
-
+    printf("El valor de sig es: %s\n",nuevo->sig);
 }
 
 void lInsertarFin(tLista* l, tDatos x)
@@ -87,26 +87,25 @@ void lInsertarFin(tLista* l, tDatos x)
     }
 }
 
-void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
+void lInsertarOrden(tLista* l, tDatos datlist, char orden)
 {
     Nodo *aux;
     Nodo *nuevo;
-    nuevo = (Nodo*) malloc(sizeof(Nodo));
-    nuevo->info = *datlist;
+    nuevo = malloc(sizeof(Nodo));
+    nuevo->info = datlist;
     nuevo->sig = NULL;
 
     if(l->cab == NULL)
     {
         l->cab = nuevo;
-
     } else {
-        if(((datlist->clave > l->cab->info.clave)&& (orden == 'D'))|| ((datlist->clave < l->cab->info.clave)&& (orden == 'A')))
+        if(((datlist.clave > l->cab->info.clave)&& (orden == 'D'))|| ((datlist.clave < l->cab->info.clave)&& (orden == 'A')))
         {
             nuevo->sig = l->cab;
             l->cab = nuevo;
         } else {
             aux = l->cab;
-            while((aux->sig != NULL) && (((datlist->clave > aux->sig->info.clave) && (orden == 'A')) || ((datlist->clave < aux->sig->info.clave) && (orden == 'D'))))
+            while((aux->sig != NULL) && (((datlist.clave > aux->sig->info.clave) && (orden == 'A')) || ((datlist.clave < aux->sig->info.clave) && (orden == 'D'))))
             {
                 aux = aux->sig;
             }
