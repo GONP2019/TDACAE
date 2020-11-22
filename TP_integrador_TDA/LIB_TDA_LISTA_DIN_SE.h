@@ -47,8 +47,7 @@ void lPpio(tLista* l)
 
 void lInfo(tLista* l, tDatos* x)
 {
-
-   x = l->actual->info;
+    x->clave = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
@@ -88,31 +87,33 @@ void lInsertarFin(tLista* l, tDatos x)
     }
 }
 
-Nodo* CrearNodo (Nodo* nuevo, tDatos datlist)
-{
-    nuevo = (Nodo*) malloc(sizeof(Nodo));
-    nuevo->info = datlist.clave;
-    nuevo->sig = NULL;
-    return nuevo;
-}
-
-void lInsertarOrden(tLista* l, tDatos datlist, char orden)
+void lInsertarOrden(tLista* l, tDatos* datlist, char orden)
 {
     Nodo *aux;
     Nodo *nuevo;
-    CrearNodo(&nuevo,datlist);
-
+    nuevo = malloc(sizeof(Nodo));
+    nuevo->info = datlist;
+    nuevo->sig = NULL;
+    printf("----------------------\n");
+    printf("Antes de continuar se mostrar los datos del nuevo nodo \n");
+    printf("El dato del campo .info es:%i \n",nuevo->info->clave);
+    printf("El dato del campo .sig es:%s \n",nuevo->sig);
+    printf("----------------------\n");
     if(l->cab == NULL)
     {
         l->cab = nuevo;
+        printf("----------------------\n");
+        printf("El dato de la cabecera .info es:%i \n",l->cab->info->clave);
+        printf("----------------------\n");
     } else {
-        if(((datlist.clave > l->cab->info->clave)&& (orden == 'D'))|| ((datlist.clave < l->cab->info->clave)&& (orden == 'A')))
+        if(((datlist->clave > l->cab->info->clave)&& (orden == 'D'))|| ((datlist->clave < l->cab->info->clave)&& (orden == 'A')))
         {
             nuevo->sig = l->cab;
             l->cab = nuevo;
         } else {
             aux = l->cab;
-            while((aux->sig != NULL) && (((datlist.clave > aux->sig->info->clave) && (orden == 'A')) || ((datlist.clave < aux->sig->info->clave) && (orden == 'D'))))
+            printf("El dato de la cabecera despues de primer elemento es: %i\n",aux->info->clave);
+            while((aux->sig != NULL) && (((datlist->clave > aux->sig->info->clave) && (orden == 'A')) || ((datlist->clave < aux->sig->info->clave) && (orden == 'D'))))
             {
                 aux = aux->sig;
             }
