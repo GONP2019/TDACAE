@@ -55,7 +55,7 @@ void lPpio(tLista* l)
 
 void lInfo(tLista* l, tDatos* x)
 {
-    x->clave = l->actual->info;
+    x = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
