@@ -1,5 +1,5 @@
-#ifndef LIB_TDA_COLA_EST_CIR
-#define LIB_TDA_COLA_EST_CIR
+#ifndef LIB_TDA_COLA_EST_CIR_INCLUDED
+#define LIB_TDA_COLA_EST_CIR_INCLUDED
 #define MAX 5
 typedef unsigned int tDato;
 
@@ -15,15 +15,6 @@ void cCrear (tCola* k)
     k->frente = 0 ;
     k->finc = 0;
 }
-
-void inicol (tCola* k)
-{
-    for(int h=0;h<=MAX;h++)
-    {
-        k->arrCC[h] = 0;
-    }
-}
-
 
 int cLlena (tCola* k)
 {
@@ -52,7 +43,7 @@ int cVacia (tCola* k)
     return res;
 }
 
-void cPoner (tCola* k,tDato *dato)
+void cPoner (tCola* k,tDato dato)
 {
     if (k->finc == MAX-1)
     {
@@ -63,7 +54,7 @@ void cPoner (tCola* k,tDato *dato)
         k->finc = k->finc + 1;
 
     }
-    k->arrCC[k->finc] = *dato;
+    k->arrCC[k->finc] = dato;
 }
 
 void cSacar (tCola* k, tDato* dato)
