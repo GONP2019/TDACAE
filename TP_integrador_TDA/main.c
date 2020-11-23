@@ -123,7 +123,7 @@ int esprimo (tDato dato)
 /* Código principal*/
  main()
 {
-    tDato dato;
+    tDato dato=0;
     tPila p;
     tCola k;
     tLista I;
@@ -134,8 +134,8 @@ int esprimo (tDato dato)
     pCrear(&p);
     lCrear(&I);
     lCrear(&PM);
-    inicol(&k);
-    inipil(&p);
+    /*inicol(&k);
+    inipil(&p);*/
     RevFinDat(&rt);
     while ( rt == 'S' && cLlena(&k)!= 1)
     {
@@ -161,8 +161,8 @@ int esprimo (tDato dato)
        procesar(&k,&p,&I,&PM,&error);
            if (error != 1){
                 MostrarPil(&p);
-                MostrarLisp(&I);
-                MostrarLisprimo (&PM);
+               /*MostrarLisp(&I);*/
+               /*MostrarLisprimo (&PM);*/
                 printf("Finalizado");
           }else{
                 printf("No ha sido posible continuar con el proceso.\n");
