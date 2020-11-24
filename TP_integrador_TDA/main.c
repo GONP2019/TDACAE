@@ -22,7 +22,7 @@ void RevFinDat (char* rt)
 }
 
 /* Proceso que valida el ingreso de un numero entero positivo */
-void ingnum (tDato *dato)
+void ingnum (tDato* dato)
 {
     int num;
     do
@@ -32,7 +32,7 @@ void ingnum (tDato *dato)
         scanf ("%i",&num);
     }while (num < 0);
 
-    *dato = &num;
+    *dato = num;
 
 }
 
@@ -55,21 +55,18 @@ void MostrarPil(tPila* p)
 void MostrarLisp (tLista* I)
 {
     tDatos x;
-    lPpio(I);
-    lInfo(I,&x);
-    printf("La cabecera tiene datos: %i \n",x.clave);
     if (!lVacia(I))
     {
         printf("------------------\n");
         printf("Comienzo de impresi%cn lista impares \n",162);
         lPpio(I);
         lInfo(I,&x);
-        printf("El n%cmero impar es:%i",163,x.clave);
+        printf("El n%cmero impar es:%i \n",163,x.clave);
         lSig(I);
         while(!lFin(I))
         {
             lInfo(I,&x);
-            printf("El n%cmero impar es:%i",163,x.clave);
+            printf("El n%cmero impar es:%i \n",163,x.clave);
             lSig(I);
         }
     }
@@ -123,7 +120,7 @@ int esprimo (tDato dato)
 /* Código principal*/
  main()
 {
-    tDato dato=0;
+    tDato dato;
     tPila p;
     tCola k;
     tLista I;
@@ -161,9 +158,9 @@ int esprimo (tDato dato)
        procesar(&k,&p,&I,&PM,&error);
            if (error != 1){
                 MostrarPil(&p);
-               /*MostrarLisp(&I);*/
-               /*MostrarLisprimo (&PM);*/
-                printf("Finalizado");
+                MostrarLisp(&I);
+                MostrarLisprimo (&PM);
+                printf("Finalizado|n");
           }else{
                 printf("No ha sido posible continuar con el proceso.\n");
                 printf("Finalizando sistema....\n");
@@ -172,39 +169,39 @@ int esprimo (tDato dato)
 }
 
 
-void procesar(tCola k,tPila p,tLista I,tLista PM,int *error,tDato dato)
+void procesar(tCola* k,tPila* p,tLista* I,tLista* PM,int *error,tDato dato)
 {
 
     tDatos datlis;
 
-    while(cVacia(&k)!=1 && error != 1)
+    while(cVacia(k)!=1 && error != 1)
     {
-        cSacar(&k,&dato);
+        cSacar(k,&dato);
         if(dato % 2 == 0)
         {
-            if(!pLlena(&p))
+            if(!pLlena(p))
             {
-                pPoner(&p,dato);
+                pPoner(p,dato);
             } else {
                 *error = 1;
             }
         }else{
-                if(!lLlena(&I))
+                if(!lLlena(I))
                {
                    datlis.clave = dato;
-                   lInsertarOrden(&I,datlis,'D');
+                   lInsertarOrden(I,datlis,'D');
                } else {
                    *error = 1;
                }
 
         }
 
-        if(esprimo(dato) == 1)
+        if(esprimo(dato) == 1 && error != 1)
         {
-            if(!lLlena(&PM))
+            if(!lLlena(PM))
             {
                 datlis.clave = dato;
-                lInsertarOrden(&PM,datlis,'A');
+                lInsertarOrden(PM,datlis,'A');
 
             } else {
                 *error = 1;

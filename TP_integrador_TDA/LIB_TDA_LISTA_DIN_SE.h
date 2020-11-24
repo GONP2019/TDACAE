@@ -47,7 +47,7 @@ void lPpio(tLista* l)
 
 void lInfo(tLista* l, tDatos* x)
 {
-    (*x) = l->actual->info;
+    *x = l->actual->info;
 }
 
 void lModificar(tLista* l, tDatos x)
@@ -100,6 +100,7 @@ void lInsertarOrden(tLista* l, tDatos datlist, char orden)
     if(l->cab == NULL)
     {
         l->cab = nuevo;
+
     } else {
         if(((datlist.clave > l->cab->info.clave)&& (orden == 'D'))|| ((datlist.clave < l->cab->info.clave)&& (orden == 'A')))
         {
