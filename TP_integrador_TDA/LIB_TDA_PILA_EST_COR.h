@@ -15,14 +15,14 @@ void pCrear(tPila* p)
     p->cima = -1;
 }
 
-
+/*
 void inipil(tPila* p)
 {
     for(int f=0;f<=MAX-1;f++)
     {
       p->elem[f] = 0;
     }
-}
+}*/
 
 
 int pVacia (tPila* p)

@@ -43,6 +43,7 @@ void MostrarPil(tPila* p)
     if (!pVacia(p)){
         printf("------------------\n");
         printf("Comienzo de impresi%cn pila de pares \n",162);
+        printf("\n");
         while (!pVacia(p))
         {
             pSacar(p,&x);
@@ -59,6 +60,7 @@ void MostrarLisp (tLista* I)
     {
         printf("------------------\n");
         printf("Comienzo de impresi%cn lista impares \n",162);
+        printf("\n");
         lPpio(I);
         lInfo(I,&x);
         printf("El n%cmero impar es:%i \n",163,x.clave);
@@ -79,14 +81,15 @@ void MostrarLisprimo (tLista* PM)
     {
         printf("------------------\n");
         printf("Comienzo de impresi%cn lista primos \n",162);
+        printf("\n");
         lPpio(PM);
         lInfo(PM,&datPRIM);
-        printf("El número primo es:%i",datPRIM);
+        printf("El n%cmero primo es:%i \n",163,datPRIM);
         lSig(PM);
         while(!lFin(PM))
         {
             lInfo(PM,&datPRIM);
-            printf("El número primo es:%i",datPRIM);
+            printf("El n%cmero primo es:%i \n",163,datPRIM);
             lSig(PM);
         }
     }
@@ -131,8 +134,6 @@ int esprimo (tDato dato)
     pCrear(&p);
     lCrear(&I);
     lCrear(&PM);
-    /*inicol(&k);
-    inipil(&p);*/
     RevFinDat(&rt);
     while ( rt == 'S' && cLlena(&k)!= 1)
     {
@@ -143,7 +144,8 @@ int esprimo (tDato dato)
 
     if (rt == 'S'){
         printf ("Error,no ha respetado el m%cximo de datos a ingresar. Estructura de datos llena.\n",160);
-        printf("Desea comenzar nuevamente ? S\N \n");
+        printf("\n");
+        printf("Desea comenzar nuevamente ? S/N \n");
         RevFinDat(&rt);
         if (rt =='S')
         {
@@ -160,7 +162,9 @@ int esprimo (tDato dato)
                 MostrarPil(&p);
                 MostrarLisp(&I);
                 MostrarLisprimo (&PM);
-                printf("Finalizado|n");
+                printf("\n");
+                printf("Finalizado \n");
+                system("pause()\n");
           }else{
                 printf("No ha sido posible continuar con el proceso.\n");
                 printf("Finalizando sistema....\n");
